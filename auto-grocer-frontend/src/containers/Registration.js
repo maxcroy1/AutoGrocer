@@ -27,7 +27,7 @@ class Registration extends React.Component {
             <div>
                 <Navbar />
                 <h1>Sign Up</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label for="fname">First Name:</label><br />
                     <input type="text" id="fname" name="fname" onChange={this.handleChange} /><br />
                     <label for="lname">Last Name:</label><br />
@@ -40,7 +40,7 @@ class Registration extends React.Component {
                     <input type="password" id="reg_password" name="password" onChange={this.handleChange} /><br />
                     <label for="password_conf">Confirm Password:</label><br />
                     <input type="password" id="password_conf" name="password_conf" onChange={this.handleChange} /><br />
-                    <input type="submit" value="Submit" onSubmit={this.handleSubmit} />
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         );

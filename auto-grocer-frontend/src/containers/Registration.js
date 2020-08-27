@@ -18,6 +18,10 @@ class Registration extends React.Component {
         });
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div>
@@ -36,7 +40,7 @@ class Registration extends React.Component {
                     <input type="password" id="reg_password" name="password" onChange={this.handleChange} /><br />
                     <label for="password_conf">Confirm Password:</label><br />
                     <input type="password" id="password_conf" name="password_conf" onChange={this.handleChange} /><br />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" onSubmit={this.handleSubmit} />
                 </form>
             </div>
         );

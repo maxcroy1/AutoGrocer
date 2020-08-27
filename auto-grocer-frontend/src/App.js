@@ -4,6 +4,7 @@ import './App.css';
 import Home from './containers/Home'
 import Login from './containers/Login'
 import Registration from './containers/Registration'
+import Shop from './containers/Shop'
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route path='/register'>
             <Registration />
+          </Route>
+          <Route path='/shop'>
+            <Shop />
           </Route>
         </Switch>
       </div>

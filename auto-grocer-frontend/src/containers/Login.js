@@ -18,6 +18,7 @@ class Login extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        // INSERT FETCH TO SEARCH FOR USER AND ISSUE JWT TOKEN
     }
 
     render() {

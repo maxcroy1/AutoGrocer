@@ -1,50 +1,28 @@
 import React from 'react';
+import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import AccountSettings from '../components/AccountSettings';
 
-class Registration extends React.Component {
+function Registration() {
+    let { path } = useRouteMatch();
 
-    state = {
-        fname: "",
-        lname: "",
-        email: "",
-        username: "",
-        password: "",
-        password_conf: ""
-    }
+    return (
+        <div>
+            <Navbar />
+            <h1>Sign Up</h1>
+            <Switch>
+                <Route exact path={`${path}/account_settings`}>
+                    <AccountSettings />
+                </Route>
+                <Route exact path={`${path}`}>
+                    <Redirect to={`${path}/account_settings`} />
+                </Route>
+                {/* <Route path={`${match.url}/billing_preferences`}>
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <div>
-                <Navbar />
-                <h1>Sign Up</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label for="fname">First Name:</label><br />
-                    <input type="text" id="fname" name="fname" onChange={this.handleChange} /><br />
-                    <label for="lname">Last Name:</label><br />
-                    <input type="text" id="lname" name="lname" onChange={this.handleChange} /><br />
-                    <label for="email">Email:</label><br />
-                    <input type="text" id="email" name="email" onChange={this.handleChange} /><br />
-                    <label for="username">Username:</label><br />
-                    <input type="text" id="reg_username" name="username" onChange={this.handleChange} /><br />
-                    <label for="password">Password:</label><br />
-                    <input type="password" id="reg_password" name="password" onChange={this.handleChange} /><br />
-                    <label for="password_conf">Confirm Password:</label><br />
-                    <input type="password" id="password_conf" name="password_conf" onChange={this.handleChange} /><br />
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
-        );
-    }
+                </Route> */}
+            </Switch>
+        </div>
+    );
 }
 
 export default Registration;

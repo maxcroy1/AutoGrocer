@@ -1,0 +1,51 @@
+import React from 'react';
+
+class AccountSettings extends React.Component {
+    state = {
+        fname: "",
+        lname: "",
+        email: "",
+        username: "",
+        password: "",
+        password_conf: ""
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        // INSERT FETCH TO CREATE USER, ISSUE JWT TOKEN, AND MOVE TO NEXT STAGE OF REGISTRATION
+    }
+
+    render() {
+        return (
+            <form>
+                <label htmlFor="fname">First Name:</label><br />
+                <input type="text" name="fname" /><br />
+
+                <label htmlFor="lname">Last Name:</label><br />
+                <input type="text" name="lname" /><br />
+
+                <label htmlFor="email">Email Address:</label><br />
+                <input type="text" name="email" /><br />
+
+                <label htmlFor="username">Username:</label><br />
+                <input type="text" name="username" /><br />
+
+                <label htmlFor="password">Password:</label><br />
+                <input type="password" name="password" /><br />
+
+                <label htmlFor="password_conf">Confirm Password:</label><br />
+                <input type="pasword" name="password_conf" /><br />
+
+                <input type="submit" value="Next: Billing Info" />
+            </form>
+        );
+    }
+}
+
+export default AccountSettings;

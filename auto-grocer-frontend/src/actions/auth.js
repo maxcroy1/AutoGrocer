@@ -1,8 +1,10 @@
-export const logIn = userToken => {
+export const logIn = (userToken) => {
     return {
         type: "LOGIN_USER",
         user: userToken
     }
 }
 
-export const logOut = { type: "LOGOUT_USER" }
+export const logOut = () => {
+    return { type: "LOGOUT_USER" }
+}

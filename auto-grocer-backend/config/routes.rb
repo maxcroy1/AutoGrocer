@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :billing_settings, only: [:create]
   resources :users, only: [:create]
 
   post '/login', to: 'auth#create'

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { logIn } from '../actions/auth';
 
 class AccountSettings extends React.Component {
     state = {
@@ -22,7 +24,10 @@ class AccountSettings extends React.Component {
             let configObj = this.buildFetchConfig();
             fetch('http://localhost:3000/users', configObj)
                 .then(resp => resp.json())
-                .then(json => console.log(json))
+                .then(json => {
+                    localStorage.setItem("ag_token", json.jwt)
+                    this.props.logIn(json.jwt)
+                })
                 .catch(error => console.log(error))
         }
     }
@@ -75,4 +80,12 @@ class AccountSettings extends React.Component {
     }
 }
 
-export default AccountSettings;
+const mapDispactchToProps = dispatch => {
+    return {
+        logIn: (token) => {
+            dispatch(logIn(token))
+        }
+    }
+}
+
+export default connect(null, mapDispactchToProps)(AccountSettings);

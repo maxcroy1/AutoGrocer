@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  instacart_email: MyString
+  instacart_pass: MyString
+  card_num: MyString
+  expiration: 2020-08-28
+  cvc: MyString
+  street_address: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+
+two:
+  user: two
+  instacart_email: MyString
+  instacart_pass: MyString
+  card_num: MyString
+  expiration: 2020-08-28
+  cvc: MyString
+  street_address: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString

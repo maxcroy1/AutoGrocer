@@ -21,7 +21,10 @@ class Login extends React.Component {
         let configObj = this.buildConfigObj();
         fetch('http://localhost:3000/login', configObj)
             .then(resp => resp.json())
-            .then(json => console.log(json))
+            .then(json => {
+                localStorage.setItem("ag_token", json.jwt)
+                this.props.logIn(json.jwt)
+            })
             .catch(error => console.log(error))
     }
 

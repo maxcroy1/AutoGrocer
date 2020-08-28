@@ -18,7 +18,34 @@ class AccountSettings extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // INSERT FETCH TO CREATE USER, ISSUE JWT TOKEN, AND MOVE TO NEXT STAGE OF REGISTRATION
+        if (this.state.password === this.state.password_conf) {
+            let configObj = this.buildFetchConfig();
+            fetch('http://localhost:3000/users', configObj)
+                .then(resp => resp.json())
+                .then(json => console.log(json))
+                .catch(error => console.log(error))
+        }
+    }
+
+    buildFetchConfig() {
+        let formData = {
+            user: {
+                fname: this.state.fname,
+                lname: this.state.lname,
+                email: this.state.email,
+                username: this.state.username,
+                password: this.state.password
+            }
+        }
+        let configObj = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }
+        return configObj
     }
 
     render() {
@@ -40,7 +67,7 @@ class AccountSettings extends React.Component {
                 <input type="password" name="password" onChange={this.handleChange} /><br />
 
                 <label htmlFor="password_conf">Confirm Password:</label><br />
-                <input type="pasword" name="password_conf" onChange={this.handleChange} /><br />
+                <input type="password" name="password_conf" onChange={this.handleChange} /><br />
 
                 <input type="submit" value="Next: Billing Info" />
             </form>

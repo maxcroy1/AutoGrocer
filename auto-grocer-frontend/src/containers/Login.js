@@ -18,7 +18,29 @@ class Login extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // INSERT FETCH TO SEARCH FOR USER AND ISSUE JWT TOKEN
+        let configObj = this.buildConfigObj();
+        fetch('http://localhost:3000/login', configObj)
+            .then(resp => resp.json())
+            .then(json => console.log(json))
+            .catch(error => console.log(error))
+    }
+
+    buildConfigObj() {
+        let formData = {
+            user: {
+                username: this.state.username,
+                password: this.state.password
+            }
+        }
+        let configObj = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }
+        return configObj
     }
 
     render() {
@@ -27,9 +49,9 @@ class Login extends React.Component {
                 <Navbar />
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label for="username">Username:</label><br />
+                    <label htmlFor="username">Username:</label><br />
                     <input type="text" id="username" name="username" onChange={this.handleChange}></input><br />
-                    <label for="password">Password:</label><br />
+                    <label htmlFor="password">Password:</label><br />
                     <input type="password" id="password" name="password" onChange={this.handleChange}></input><br />
                     <input type="submit" value="Log in" />
                 </form>

@@ -1,13 +1,21 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
+import { logIn } from './actions/auth'
 import Home from './containers/Home'
 import Login from './containers/Login'
 import Registration from './containers/Registration'
 import Shop from './containers/Shop'
-import { connect } from 'react-redux';
 
 class App extends React.Component {
+
+  componentDidMount() {
+    if (localStorage.getItem('ag_token')) {
+      this.props.logIn(localStorage.getItem('ag_token'))
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -36,4 +44,12 @@ let mapStateToProps = (state) => {
   return { user: state.user };
 };
 
-export default connect(mapStateToProps)(App);
+let mapDispatchToProps = dispatch => {
+  return {
+    logIn: (token) => {
+      dispatch(logIn(token))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

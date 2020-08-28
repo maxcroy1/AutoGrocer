@@ -17,7 +17,7 @@ const Registration = (props) => {
                     { props.user ? <Redirect to={`${path}/billing_preferences`} /> :<AccountSettings /> }
                 </Route>
                 <Route exact path={`${path}/billing_preferences`}>
-                    { props.registration_complete ? <Redirect to={`${path}/shop`} /> :<BillingSettings /> }
+                    { props.registration_complete ? <Redirect to={`/shop`} /> :<BillingSettings /> }
                 </Route>
                 <Route exact path={`${path}`}>
                     <Redirect to={`${path}/account_settings`} />

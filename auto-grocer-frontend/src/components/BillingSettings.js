@@ -28,8 +28,8 @@ class BillingSettings extends React.Component {
         if ((this.state.instacart_email === this.state.instacart_email_conf) && (this.state.instacart_pass === this.state.instacart_pass_conf)) {
             let configObj = this.buildFetchConfig();
             fetch('http://localhost:3000/billing_settings', configObj)
-                .then(resp => resp.json())
-                .then(json => console.log(json))
+                .then(this.props.completeRegistration())
+                .catch(error => console.log(error))
         } else {
             console.log('Nope')
         }

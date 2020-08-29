@@ -4,7 +4,8 @@ import Navbar from '../components/Navbar'
 class Shop extends React.Component {
     state = {
         item: "",
-        quantity: "1"
+        quantity: "1",
+        items: []
     }
 
     quantityGenerator() {
@@ -21,8 +22,16 @@ class Shop extends React.Component {
         });
     }
 
-    handleSubmit = (event) => {
+    handleAdd = (event) => {
         event.preventDefault();
+        event.target.reset();
+        let newItem = {
+            item: this.state.item,
+            quantity: this.state.quantity
+        };
+        this.setState( previousState => ({
+            items: [...previousState.items, newItem]
+        }));
     }
 
     render() {
@@ -31,7 +40,7 @@ class Shop extends React.Component {
                 <Navbar />
                 <h1>Let's shop!</h1>
                 <h3>Enter the name and quantity of the item that you'd like to add to your order below</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleAdd}>
                     <label htmlFor="item">Item:</label><br />
                     <input type="text" name="item" onChange={this.handleChange} />
                     <select name="quantity" onChange={this.handleChange}>
@@ -39,6 +48,10 @@ class Shop extends React.Component {
                     </select>
                     <input type="submit" value="Add Item" />
                 </form>
+                <h3>Cart Items:</h3>
+                <ul>
+                    {this.state.items.map(item => <li><strong>{item.item}</strong> {item.quantity}x <button>Remove</button></li>)}
+                </ul>
             </div>
         );
     }

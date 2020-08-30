@@ -3,6 +3,7 @@ import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navbar from '../components/Navbar'
 import ItemSelection from '../components/ItemSelection'
+import DeliveryPreferences from '../components/DeliveryPreferences'
 
 const Shop = (props) => {
 
@@ -15,6 +16,9 @@ const Shop = (props) => {
             <Switch>
                 <Route exact path={`${path}/item_selection`}>
                     {props.selection_complete ? <Redirect to={`${path}/delivery_preferences`} /> : <ItemSelection /> }
+                </Route>
+                <Route exact path={`${path}/delivery_preferences`}>
+                    <DeliveryPreferences />
                 </Route>
                 <Route exact path={`${path}`}>
                     <Redirect to={`${path}/item_selection`} />

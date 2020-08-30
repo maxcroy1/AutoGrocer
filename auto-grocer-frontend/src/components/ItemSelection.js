@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { initOrder } from '../actions/order';
 
 class ItemSelection extends React.Component {
 
@@ -34,6 +36,10 @@ class ItemSelection extends React.Component {
         }));
     }
 
+    handleComplete = () => {
+        this.props.initOrder(this.state.items);
+    }
+
     render() {
         return (
             <div>
@@ -45,7 +51,8 @@ class ItemSelection extends React.Component {
                         {this.quantityGenerator().map(num => <option value={num} selected={num === 1 ? true : false}>{num}</option>)}
                     </select>
                     <input type="submit" value="Add Item" />
-                </form>
+                </form><br />
+                <button onClick={this.handleComplete}>Next: Delivery Options</button>
                 <h3>Cart Items:</h3>
                 <ul>
                     {this.state.items.map(item => <li><strong>{item.item}</strong> {item.quantity}x <button>Remove</button></li>)}
@@ -54,3 +61,13 @@ class ItemSelection extends React.Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        initOrder: (orderArray) => {
+            dispatch(initOrder(orderArray))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ItemSelection);

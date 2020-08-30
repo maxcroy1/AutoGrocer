@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Navbar from '../components/Navbar'
 import ItemSelection from '../components/ItemSelection'
 
@@ -13,7 +14,7 @@ const Shop = (props) => {
             <h1>Let's shop!</h1>
             <Switch>
                 <Route exact path={`${path}/item_selection`}>
-                    <ItemSelection />
+                    {props.order.length > 0 ? <Redirect to={`${path}/delivery_preferences`} /> : <ItemSelection /> }
                 </Route>
                 <Route exact path={`${path}`}>
                     <Redirect to={`${path}/item_selection`} />
@@ -23,4 +24,8 @@ const Shop = (props) => {
     );
 }
 
-export default Shop;
+const mapStateToProps = (state) => {
+    return {order: state.order}
+}
+
+export default connect(mapStateToProps)(Shop);

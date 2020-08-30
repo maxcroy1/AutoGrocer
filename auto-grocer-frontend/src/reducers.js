@@ -46,7 +46,10 @@ function orderReducer(state = {id: "", items: [], selection_complete: false}, ac
             }
 
         case "SELECTION_COMPLETE":
-            return state.selection_complete = true
+            return state = {
+                ...state,
+                selection_complete: true
+            }
 
         default:
             return state;

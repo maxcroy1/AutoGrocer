@@ -11,3 +11,9 @@ export const addItem = (newItem) => {
         item: newItem
     }
 }
+
+export const selectionComplete = () => {
+    return {
+        type: "SELECTION_COMPLETE"
+    }
+}

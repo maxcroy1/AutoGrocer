@@ -14,7 +14,7 @@ const Shop = (props) => {
             <h1>Let's shop!</h1>
             <Switch>
                 <Route exact path={`${path}/item_selection`}>
-                    {props.order.length > 0 ? <Redirect to={`${path}/delivery_preferences`} /> : <ItemSelection /> }
+                    {props.selection_complete ? <Redirect to={`${path}/delivery_preferences`} /> : <ItemSelection /> }
                 </Route>
                 <Route exact path={`${path}`}>
                     <Redirect to={`${path}/item_selection`} />
@@ -25,7 +25,7 @@ const Shop = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {order: state.order}
+    return {selection_complete: state.order.selection_complete}
 }
 
 export default connect(mapStateToProps)(Shop);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { initOrder, addItem } from '../actions/order';
+import { initOrder, addItem, selectionComplete } from '../actions/order';
 
 class ItemSelection extends React.Component {
 
@@ -58,7 +58,9 @@ class ItemSelection extends React.Component {
     }
 
     handleComplete = () => {
-        this.props.initOrder(this.state.items);
+        if (this.props.items.length > 0) {
+            this.props.selectionComplete();
+        }
     }
 
     componentDidMount() {
@@ -118,6 +120,9 @@ const mapDispatchToProps = dispatch => {
         },
         addItem: (newItem) => {
             dispatch(addItem(newItem))
+        },
+        selectionComplete: () => {
+            dispatch(selectionComplete())
         }
     }
 }

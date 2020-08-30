@@ -9,10 +9,10 @@ class BillingSettingsController < ApplicationController
             if @billing_settings.valid?
                 render json: {message: "Billing settings successfully saved"}, status: :accepted
             else
-                render json: {message: "Failed to save settings"}, status: :accepted
+                render json: {message: "Failed to save settings"}, status: :not_acceptable
             end
         else
-            render json: {message: "Failed to save settings"}, status: :accepted
+            render json: {message: "Failed to save settings"}, status: :not_acceptable
         end
     end
 

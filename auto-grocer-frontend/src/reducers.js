@@ -31,10 +31,22 @@ function registrationReducer(state = false, action) {
     }
 }
 
-function orderReducer(state = [], action) {
+function orderReducer(state = {id: "", items: [], selection_complete: false}, action) {
     switch (action.type) {
         case "INIT_ORDER":
-            return action.order; 
+            return state = {
+                ...state,
+                id: action.orderID
+            }
+            
+        case "ADD_ITEM_TO_ORDER":
+            return state = {
+                ...state,
+                items: [...state.items, action.item]
+            }
+
+        case "SELECTION_COMPLETE":
+            return state.selection_complete = true
 
         default:
             return state;

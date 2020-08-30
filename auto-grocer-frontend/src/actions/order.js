@@ -1,6 +1,13 @@
-export const initOrder = (orderArray) => {
+export const initOrder = (orderID) => {
     return {
         type: "INIT_ORDER",
-        order: orderArray
+        orderID: orderID
+    }
+}
+
+export const addItem = (newItem) => {
+    return {
+        type: "ADD_ITEM_TO_ORDER",
+        item: newItem
     }
 }

@@ -86,7 +86,7 @@ class ItemSelection extends React.Component {
     render() {
         return (
             <div>
-                <h3>Enter the name and quantity of the item that you'd like to add to your order below</h3>
+                <h2>Enter the name and quantity of the item that you'd like to add to your order below</h2>
                 <form onSubmit={this.handleAdd}>
                     <label htmlFor="item">Item:</label><br />
                     <input type="text" name="item" onChange={this.handleChange} />
@@ -96,7 +96,7 @@ class ItemSelection extends React.Component {
                     <input type="submit" value="Add Item" />
                 </form><br />
                 <button onClick={this.handleComplete}>Next: Delivery Options</button>
-                <h3>Cart Items:</h3>
+                <h2>Cart Items:</h2>
                 <ul>
                     {this.props.items.map(item => <li><strong>{item.name}</strong> {item.quantity}x <button>Remove</button></li>)}
                 </ul>

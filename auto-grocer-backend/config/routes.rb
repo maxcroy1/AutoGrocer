@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :order_items, only: [:create, :delete]
-  resources :orders, only: [:create, :patch]
+  resources :orders, only: [:create, :update]
   resources :billing_settings, only: [:create]
   resources :users, only: [:create]
 

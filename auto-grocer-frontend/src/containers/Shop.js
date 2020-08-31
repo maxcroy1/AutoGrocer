@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Navbar from '../components/Navbar'
 import ItemSelection from '../components/ItemSelection'
 import DeliveryPreferences from '../components/DeliveryPreferences'
+import Confirmation from '../components/Confirmation'
 
 const Shop = (props) => {
 
@@ -19,6 +20,9 @@ const Shop = (props) => {
                 </Route>
                 <Route exact path={`${path}/delivery_preferences`}>
                     {props.delivery_pref_complete ? <Redirect to={`${path}/confirmation`} /> : <DeliveryPreferences /> }
+                </Route>
+                <Route exact path={`${path}/confirmation`}>
+                    <Confirmation />
                 </Route>
                 <Route exact path={`${path}`}>
                     <Redirect to={`${path}/item_selection`} />

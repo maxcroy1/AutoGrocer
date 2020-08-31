@@ -7,6 +7,7 @@ import Home from './containers/Home'
 import Login from './containers/Login'
 import Registration from './containers/Registration'
 import Shop from './containers/Shop'
+import OrderComplete from './containers/OrderComplete'
 
 class App extends React.Component {
 
@@ -32,6 +33,9 @@ class App extends React.Component {
             </Route>
             <Route path='/shop'>
             { this.props.user ? <Shop /> : <Redirect to="/login" /> }
+            </Route>
+            <Route exact path='/order_complete'>
+              <OrderComplete />
             </Route>
           </Switch>
         </div>

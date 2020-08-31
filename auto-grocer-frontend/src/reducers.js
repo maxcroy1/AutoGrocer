@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 const rootReducer = combineReducers({
     user: userReducer,
     registration_complete: registrationReducer,
-    order: orderReducer
+    order: orderReducer,
+    delivery: deliveryReducer
 });
 
 export default rootReducer;
@@ -51,6 +52,24 @@ function orderReducer(state = {id: "", items: [], selection_complete: false}, ac
                 selection_complete: true
             }
 
+        default:
+            return state;
+    }
+}
+
+function deliveryReducer(state = {day: "", time: "", address_one: "", address_two: "", zipcode: "", phone: "", instructions: ""}, action) {
+    switch(action.type) {
+        case "ADD_DELIVERY_OPTIONS": 
+            return state = {
+                ...state, 
+                day: action.day,
+                time: action.time,
+                address_one: action.address_one, 
+                address_two: action.address_two,
+                zipcode: action.zipcode,
+                phone: action.phone, 
+                instructions: action.instructions
+            }
         default:
             return state;
     }

@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :delivery_address_two
       t.string :zipcode
       t.string :instructions
+      t.string :day
       t.string :time
       t.string :mobile_num
 

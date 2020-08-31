@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_164149) do
     t.string "delivery_address_two"
     t.string "zipcode"
     t.string "instructions"
+    t.string "day"
     t.string "time"
     t.string "mobile_num"
     t.datetime "created_at", precision: 6, null: false

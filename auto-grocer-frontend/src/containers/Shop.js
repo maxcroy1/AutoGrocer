@@ -18,7 +18,7 @@ const Shop = (props) => {
                     {props.selection_complete ? <Redirect to={`${path}/delivery_preferences`} /> : <ItemSelection /> }
                 </Route>
                 <Route exact path={`${path}/delivery_preferences`}>
-                    <DeliveryPreferences />
+                    {props.delivery_pref_complete ? <Redirect to={`${path}/confirmation`} /> : <DeliveryPreferences /> }
                 </Route>
                 <Route exact path={`${path}`}>
                     <Redirect to={`${path}/item_selection`} />
@@ -29,7 +29,10 @@ const Shop = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {selection_complete: state.order.selection_complete}
+    return {
+        selection_complete: state.order.selection_complete,
+        delivery_pref_complete: state.delivery.time
+    }
 }
 
 export default connect(mapStateToProps)(Shop);

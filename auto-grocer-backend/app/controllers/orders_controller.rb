@@ -20,13 +20,7 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
         if @order.valid?
             @order.update(order_params)
-            @order_items = @order.order_items.map do |order_item|
-                {
-                    item: order_item.item.name,
-                    quantity: order_item.quantity
-                }
-            end
-            render json: {message: "Order successfully updated", order: @order, items: @order_items}
+            render json: {message: "Order successfully updated", order: @order}, status: :accepted
         else
             render json: {message: 'Failled to add details to order'}, status: :not_acceptable
         end
@@ -34,7 +28,7 @@ class OrdersController < ApplicationController
 
     private
     def order_params
-        params.require(:order).permit(:delivery_address_one, :delivery_address_two, :zipcode, :instructions, :time, :mobile_num)
+        params.require(:order).permit(:delivery_address_one, :delivery_address_two, :zipcode, :instructions, :day, :time, :mobile_num)
     end
 
 end

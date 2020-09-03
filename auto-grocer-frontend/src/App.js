@@ -10,6 +10,7 @@ import Login from './containers/Login';
 import Registration from './containers/Registration';
 import Shop from './containers/Shop';
 import OrderComplete from './containers/OrderComplete';
+import AccountDetails from './containers/AccountDetails';
 
 class App extends React.Component {
 
@@ -40,6 +41,9 @@ class App extends React.Component {
             </Route>
             <Route exact path='/order_complete'>
               <OrderComplete />
+            </Route>
+            <Route exact path='/account_details'>
+              <AccountDetails />
             </Route>
           </Switch>
         </div>

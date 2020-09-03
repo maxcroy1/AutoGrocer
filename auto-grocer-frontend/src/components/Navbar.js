@@ -24,7 +24,7 @@ class Navbar extends React.Component {
                 <NavLink to="/shop" exact>
                     Shop
                 </NavLink>
-                {this.props.user ? <NavLink to="/account" exact>Account</NavLink> : <NavLink to="/register" exact>Sign up</NavLink> }
+                {this.props.user ? <NavLink to="/account_details" exact>Account</NavLink> : <NavLink to="/register" exact>Sign up</NavLink> }
                 {this.props.user ? <button onClick={this.handleLogout}>Log out</button>  : <button><NavLink to="/login" exact>Log in</NavLink></button>}
             </nav>
         );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch, NavLink } from 'react-router-dom';
 import AccountInformation from '../components/account_details/AccountInformation';
 import PaymentMethod from '../components/account_details/PaymentMethod';
 import ScheduledOrders from '../components/account_details/ScheduledOrders';
@@ -7,11 +7,16 @@ import InstacartCredentials from '../components/account_details/InstacartCredent
 import PersonalInformation from '../components/account_details/PersonalInformation';
 
 const AccountDetails = (props) => {
-    let path = useRouteMatch();
+    let { path } = useRouteMatch();
 
     return (
         <div>
             <h1>Account Details</h1>
+            <NavLink to={`${path}/account_information`}>Account Information</NavLink>
+            <NavLink to={`${path}/personal_information`}>Personal Information</NavLink>
+            <NavLink to={`${path}/payment_method`}>Payment Method</NavLink>
+            <NavLink to={`${path}/instacart_credentials`}>Instacart Credentials</NavLink>
+            <NavLink to={`${path}/scheduled_orders`}>Scheduled Orders</NavLink>
             <div>
                 <Switch>
                     <Route exact path={`${path}/account_information`}>
@@ -30,11 +35,6 @@ const AccountDetails = (props) => {
                         <ScheduledOrders />
                     </Route>
                 </Switch>
-                <button>Account Information</button>
-                <button>Personal Information</button>
-                <button>Payment Method</button>
-                <button>Instacart Credentials</button>
-                <button>Scheduled Orders</button>
             </div>
         </div>
     );

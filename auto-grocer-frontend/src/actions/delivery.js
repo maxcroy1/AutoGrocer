@@ -10,3 +10,9 @@ export const addOptions = (options) => {
         instructions: options.instructions
     }
 }
+
+export const deliveryComplete = () => {
+    return {
+        type: "ORDER_CONFIRMED"
+    }
+}

@@ -27,6 +27,9 @@ function registrationReducer(state = false, action) {
         case "COMPLETE_REGISTRATION":
             return action.complete;
 
+        case "LOGOUT":
+            return action.complete;
+
         default:
             return state;
     }
@@ -52,6 +55,14 @@ function orderReducer(state = {id: "", items: [], selection_complete: false}, ac
                 selection_complete: true
             }
 
+        case "ORDER_CONFIRMED": 
+            return state = {
+                ...state,
+                id: "",
+                items: [],
+                selection_complete: false
+            }
+
         default:
             return state;
     }
@@ -70,6 +81,19 @@ function deliveryReducer(state = {day: "", time: "", address_one: "", address_tw
                 phone: action.phone, 
                 instructions: action.instructions
             }
+
+        case "ORDER_CONFIRMED": 
+            return state = {
+                ...state,
+                day: "",
+                time: "",
+                address_one: "",
+                address_two: "",
+                zipcode: "",
+                phone: "",
+                instructions: ""
+            }
+
         default:
             return state;
     }

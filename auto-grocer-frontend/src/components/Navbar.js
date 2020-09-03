@@ -1,13 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logOut } from '../actions/auth'
+import { logOut } from '../actions/auth';
+import { registrationLogout } from '../actions/registration';
 
 class Navbar extends React.Component {
     
     handleLogout = () => {
         localStorage.removeItem('ag_token');
         this.props.logOut();
+        this.props.registrationLogout();
     }
 
     render() {
@@ -37,6 +39,9 @@ const mapDispatchToProps = dispatch => {
     return {
         logOut: () => {
             dispatch(logOut())
+        },
+        registrationLogout: () => {
+            dispatch(registrationLogout())
         }
     }
 }

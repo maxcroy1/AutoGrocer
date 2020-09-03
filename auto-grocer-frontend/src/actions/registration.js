@@ -4,3 +4,10 @@ export const completeRegistration = () => {
         complete: true
     }
 }
+
+export const registrationLogout = () => {
+    return {
+        type: "LOGOUT",
+        complete: false
+    }
+}

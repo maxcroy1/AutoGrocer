@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../actions/auth';
+import { completeRegistration } from '../actions/registration';
 
 class Login extends React.Component {
 
@@ -23,6 +24,7 @@ class Login extends React.Component {
             .then(json => {
                 localStorage.setItem("ag_token", json.jwt)
                 this.props.logIn(json.jwt)
+                this.props.completeRegistration()
             })
             .catch(error => console.log(error))
     }
@@ -65,6 +67,9 @@ const mapDispactchToProps = dispatch => {
     return {
         logIn: (token) => {
             dispatch(logIn(token))
+        },
+        completeRegistration: () => {
+            dispatch(completeRegistration())
         }
     }
 }

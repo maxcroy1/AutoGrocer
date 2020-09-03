@@ -1,8 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { orderComplete } from '../actions/order';
+import { deliveryComplete } from '../actions/delivery';
 
 class Confirmation extends React.Component {
+
+    handleConfirmation = () => {
+        this.props.orderComplete();
+    }
 
     render() {
         return (
@@ -17,7 +23,7 @@ class Confirmation extends React.Component {
                 <ul>
                     {this.props.items.map(item => <li key={item}>{item.name} x{item.quantity}</li>)}
                 </ul>
-                <button><Link to='/order_complete'>Confirm Order</Link></button>
+                <button><Link to='/order_complete' onClick={this.handleConfirmation}>Confirm Order</Link></button>
             </div>
         );
     }
@@ -36,4 +42,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Confirmation);
+const mapDispatchToProps = dispatch => {
+    return {
+        orderComplete: () => {
+            dispatch(orderComplete())
+        },
+        deliveryComplete: () => {
+            dispatch(deliveryComplete())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Confirmation);

@@ -17,3 +17,9 @@ export const selectionComplete = () => {
         type: "SELECTION_COMPLETE"
     }
 }
+
+export const orderComplete = () => {
+    return {
+        type: "ORDER_CONFIRMED"
+    }
+}

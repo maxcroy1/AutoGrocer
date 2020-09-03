@@ -2,50 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 class PersonalInformation extends React.Component {
-    state = {
-        fname: "",
-        lname: "",
-        email: "",
-        phone: ""
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.user !== prevProps.user) {
-            let configObj = this.buildInitialConfig();
-            fetch('http://localhost:3000/profile', configObj)
-                .then(resp => resp.json())
-                .then(json => {
-                    this.setState({
-                        fname: json.user.fname,
-                        lname: json.user.lname,
-                        email: json.user.email
-                    })
-                })
-                .catch(error => console.log(error))
-        }
-    }
-
-    buildInitialConfig = () => {
-        let configObj = {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${this.props.user}`
-            }
-        }
-        return configObj
-    }
 
     render() {
         return (
             <div>
                 <h2>Personal Information</h2>
-                <p><strong>First Name: </strong>{this.state.fname}</p>
+                <p><strong>First Name: </strong>{this.props.fname}</p>
                 <button>Edit</button>
-                <p><strong>Last Name: </strong>{this.state.lname}</p>
+                <p><strong>Last Name: </strong>{this.props.lname}</p>
                 <button>Edit</button>
-                <p><strong>Email Address: </strong>{this.state.email}</p>
+                <p><strong>Email Address: </strong>{this.props.email}</p>
                 <button>Edit</button>
             </div>
         );
@@ -54,8 +20,10 @@ class PersonalInformation extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        fname: state.user.fname,
+        lname: state.user.lname,
+        email: state.user.email
     }
 }
 
-export default connect(mapStateToProps)(PersonalInformation);
+export default connect(mapStateToProps)(PersonalInformation); 

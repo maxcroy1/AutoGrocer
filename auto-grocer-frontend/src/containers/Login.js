@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../actions/auth';
+import { fetchUserData } from '../actions/auth';
 import { completeRegistration } from '../actions/registration';
 
 class Login extends React.Component {
@@ -23,7 +23,7 @@ class Login extends React.Component {
             .then(resp => resp.json())
             .then(json => {
                 localStorage.setItem("ag_token", json.jwt)
-                this.props.logIn(json.jwt)
+                this.props.fetchUserData()
                 this.props.completeRegistration()
             })
             .catch(error => console.log(error))
@@ -65,8 +65,8 @@ class Login extends React.Component {
 
 const mapDispactchToProps = dispatch => {
     return {
-        logIn: (token) => {
-            dispatch(logIn(token))
+        fetchUserData: () => {
+            dispatch(fetchUserData())
         },
         completeRegistration: () => {
             dispatch(completeRegistration())

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-import { logIn } from './actions/auth';
+import { fetchUserData } from './actions/auth';
 import { completeRegistration } from './actions/registration';
 import Navbar from './components/Navbar';
 import Home from './containers/Home';
@@ -16,7 +16,7 @@ class App extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('ag_token')) {
-      this.props.logIn(localStorage.getItem('ag_token'));
+      this.props.fetchUserData();
       this.props.completeRegistration();
     }
   }
@@ -61,8 +61,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = dispatch => {
   return {
-    logIn: (token) => {
-      dispatch(logIn(token))
+    fetchUserData: () => {
+      dispatch(fetchUserData())
     },
     completeRegistration: () => {
       dispatch(completeRegistration())

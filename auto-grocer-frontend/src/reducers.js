@@ -9,10 +9,55 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-function userReducer(state = "", action) {
-    switch (action.type) {
-        case "LOGIN_USER":
-            return action.user
+function userReducer(state = { 
+    token: "", 
+    fname: "", 
+    lname: "", 
+    email: "",
+    username: "",
+    billing_settings: {
+        id: "",
+        instacart_email: "",
+        card_num: "",
+        expiration: "",
+        cvc: "",
+        street_address: "",
+        city: "",
+        state: "",
+        zipcode: ""
+    },
+    orders: [],
+    requesting: false
+    }, action) {
+        switch (action.type) {
+            case "START_LOGGING_IN_USER":
+                return state = {
+                    ...state,
+                    requesting: true
+                }
+
+            case "LOGIN_USER":
+                return state = {
+                    ...state,
+                    token: localStorage.getItem('ag_token'), 
+                    fname: action.json.user.fname, 
+                    lname: action.json.user.lname, 
+                    email: action.json.user.email,
+                    username: action.json.user.username,
+                    billing_settings: {
+                        id: action.json.billing_settings.id,
+                        instacart_email: action.json.billing_settings.instacart_email,
+                        card_num: action.json.billing_settings.card_num.slice(-4),
+                        expiration: action.json.billing_settings.expiration,
+                        cvc: action.json.billing_settings.cvc,
+                        street_address: action.json.billing_settings.street_address,
+                        city: action.json.billing_settings.city,
+                        state: action.json.billing_settings.state,
+                        zipcode: action.json.billing_settings.zipcode
+                    },
+                    orders: action.json.orders,
+                    requesting: false
+                }
 
         case "LOGOUT_USER": 
             return ""

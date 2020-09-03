@@ -1,11 +1,10 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 import ItemSelection from '../components/ItemSelection';
 import DeliveryPreferences from '../components/DeliveryPreferences';
 import Confirmation from '../components/Confirmation';
 
-const Shop = (props) => {
+function Shop() {
 
     let { path } = useRouteMatch();
 
@@ -14,10 +13,10 @@ const Shop = (props) => {
             <h1>Let's shop!</h1>
             <Switch>
                 <Route exact path={`${path}/item_selection`}>
-                    {props.selection_complete ? <Redirect to={`${path}/delivery_preferences`} /> : <ItemSelection /> }
+                    <ItemSelection />
                 </Route>
                 <Route exact path={`${path}/delivery_preferences`}>
-                    {props.delivery_pref_complete ? <Redirect to={`${path}/confirmation`} /> : <DeliveryPreferences /> }
+                    <DeliveryPreferences />
                 </Route>
                 <Route exact path={`${path}/confirmation`}>
                     <Confirmation />
@@ -30,11 +29,4 @@ const Shop = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selection_complete: state.order.selection_complete,
-        delivery_pref_complete: state.delivery.time
-    }
-}
-
-export default connect(mapStateToProps)(Shop);
+export default Shop;

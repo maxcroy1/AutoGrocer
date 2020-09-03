@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { initOrder, addItem, selectionComplete } from '../actions/order';
 
 class ItemSelection extends React.Component {
@@ -7,6 +8,28 @@ class ItemSelection extends React.Component {
     state = {
         item: "",
         quantity: "1"
+    }
+
+    componentDidMount() {
+        if (this.props.orderID === "") {
+            let configObj = this.orderConfigObj();
+            fetch('http://localhost:3000/orders', configObj)
+                .then(resp => resp.json())
+                .then(json => this.props.initOrder(json.orderID))
+                .catch(error => console.log(error))
+        }
+    }
+
+    orderConfigObj = () => {
+        let configObj = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${this.props.user}`
+            }
+        }
+        return configObj
     }
 
     quantityGenerator() {
@@ -63,26 +86,6 @@ class ItemSelection extends React.Component {
         }
     }
 
-    componentDidMount() {
-        let configObj = this.orderConfigObj();
-        fetch('http://localhost:3000/orders', configObj)
-            .then(resp => resp.json())
-            .then(json => this.props.initOrder(json.orderID))
-            .catch(error => console.log(error))
-    }
-
-    orderConfigObj = () => {
-        let configObj = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${this.props.user}`
-            }
-        }
-        return configObj
-    }
-
     render() {
         return (
             <div>
@@ -95,10 +98,10 @@ class ItemSelection extends React.Component {
                     </select>
                     <input type="submit" value="Add Item" />
                 </form><br />
-                <button onClick={this.handleComplete}>Next: Delivery Options</button>
+                <button onClick={this.handleComplete}><Link to={'/shop/delivery_preferences'}>Next: Delivery Options</Link></button>
                 <h2>Cart Items:</h2>
                 <ul>
-                    {this.props.items.map(item => <li><strong>{item.name}</strong> {item.quantity}x <button>Remove</button></li>)}
+                    {this.props.items.map(item => <li key={item}><strong>{item.name}</strong> {item.quantity}x <button>Remove</button></li>)}
                 </ul>
             </div>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AccountSettings from '../components/AccountSettings';
-import BillingSettings from '../components/BillingSettings'
+import BillingSettings from '../components/BillingSettings';
 
 const Registration = (props) => {
     let { path } = useRouteMatch();

@@ -31,7 +31,7 @@ class BillingSettings extends React.Component {
                 .then(this.props.completeRegistration())
                 .catch(error => console.log(error))
         } else {
-            console.log('Nope')
+            console.log('Nope') // Change this
         }
     }
 

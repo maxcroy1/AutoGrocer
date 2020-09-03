@@ -49,11 +49,11 @@ class Login extends React.Component {
         return (
             <div>
                 <h1>Login</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={ this.handleSubmit }>
                     <label htmlFor="username">Username:</label><br />
-                    <input type="text" id="username" name="username" onChange={this.handleChange}></input><br />
+                    <input type="text" id="username" name="username" onChange={ this.handleChange }></input><br />
                     <label htmlFor="password">Password:</label><br />
-                    <input type="password" id="password" name="password" onChange={this.handleChange}></input><br />
+                    <input type="password" id="password" name="password" onChange={ this.handleChange }></input><br />
                     <input type="submit" value="Log in" />
                 </form>
             </div>

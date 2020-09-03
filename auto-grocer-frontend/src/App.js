@@ -42,7 +42,7 @@ class App extends React.Component {
             <Route exact path='/order_complete'>
               <OrderComplete />
             </Route>
-            <Route exact path='/account_details'>
+            <Route path='/account_details'>
               <AccountDetails />
             </Route>
           </Switch>

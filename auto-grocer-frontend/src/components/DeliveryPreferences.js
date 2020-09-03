@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addOptions } from '../actions/delivery';
 
 class DeliveryPreferences extends React.Component {
@@ -19,8 +20,7 @@ class DeliveryPreferences extends React.Component {
         })
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = () => {
         let configObj = this.buildConfigObj();
         fetch(`http://localhost:3000/orders/${this.props.order_id}`, configObj)
             .then(resp => resp.json())
@@ -55,7 +55,7 @@ class DeliveryPreferences extends React.Component {
     render() {
         return (
             <div>
-                    <form onSubmit={this.handleSubmit} >
+                    <form>
                         <h2>Where would you like your food to be delivered?</h2>
                         <label htmlFor="address_one">Address Line 1:</label> <br />
                         <input type="text" name="address_one" onChange={this.handleChange} /> <br />
@@ -93,7 +93,7 @@ class DeliveryPreferences extends React.Component {
                             <input type="radio" value="7pm - 9pm" name="time" /> 7pm - 9pm <br />
                         </div>
                         <br />
-                        <input type="submit" value="Confirm Order" />
+                        <Link to={'/shop/confirmation'} onClick={this.handleSubmit}><input type="submit" value="Confirm Order" /></Link>
                     </form>
             </div>
         );

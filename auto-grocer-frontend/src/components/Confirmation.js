@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Confirmation extends React.Component {
-    // handleConfirmation = () => {
-    //     let path = '/order_complete';
-    //     let history = useHistory();
-    //     history.push(path);
-    // }
 
     render() {
         return (
@@ -20,7 +15,7 @@ class Confirmation extends React.Component {
                 <p><strong>Contact Number:</strong><br />{this.props.phone}</p>
                 <p><strong>Items in Cart:</strong></p>
                 <ul>
-                    {this.props.items.map(item => <li>{item.name} x{item.quantity}</li>)}
+                    {this.props.items.map(item => <li key={item}>{item.name} x{item.quantity}</li>)}
                 </ul>
                 <button><Link to='/order_complete'>Confirm Order</Link></button>
             </div>

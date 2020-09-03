@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Navbar from '../components/Navbar';
 import AccountSettings from '../components/AccountSettings';
 import BillingSettings from '../components/BillingSettings'
 
@@ -10,7 +9,6 @@ const Registration = (props) => {
 
     return (
         <div>
-            <Navbar />
             <h1>Sign Up</h1>
             <Switch>
                 <Route exact path={`${path}/account_settings`}>

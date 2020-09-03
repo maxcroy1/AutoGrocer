@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../actions/auth'
-import Navbar from '../components/Navbar';
+import { logIn } from '../actions/auth';
 
 class Login extends React.Component {
 
@@ -49,7 +48,6 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="username">Username:</label><br />

@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-d
 import { connect } from 'react-redux';
 import './App.css';
 import { logIn } from './actions/auth'
+import Navbar from './components/Navbar'
 import Home from './containers/Home'
 import Login from './containers/Login'
 import Registration from './containers/Registration'
@@ -20,6 +21,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
+        <Navbar />
         <div className="App">
           <Switch>
             <Route exact path='/'>
@@ -29,7 +31,7 @@ class App extends React.Component {
               { this.props.user ? <Redirect to='/shop' /> : <Login /> }
             </Route>
             <Route path='/register'>
-              <Registration />
+              { this.props.user ? <Redirect to='/shop' /> : <Registration /> }
             </Route>
             <Route path='/shop'>
             { this.props.user ? <Shop /> : <Redirect to="/login" /> }

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Navbar from '../components/Navbar'
-import ItemSelection from '../components/ItemSelection'
-import DeliveryPreferences from '../components/DeliveryPreferences'
-import Confirmation from '../components/Confirmation'
+import ItemSelection from '../components/ItemSelection';
+import DeliveryPreferences from '../components/DeliveryPreferences';
+import Confirmation from '../components/Confirmation';
 
 const Shop = (props) => {
 
@@ -12,7 +11,6 @@ const Shop = (props) => {
 
     return (
         <div>
-            <Navbar />
             <h1>Let's shop!</h1>
             <Switch>
                 <Route exact path={`${path}/item_selection`}>

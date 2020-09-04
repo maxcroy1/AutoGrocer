@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { initOrder, addItem } from '../../actions/order';
+import { initOrder, addItem, removeItem } from '../../actions/order';
+import ItemCard from './ItemCard';
 
 class ItemSelection extends React.Component {
 
@@ -80,6 +81,26 @@ class ItemSelection extends React.Component {
         return configObj
     }
 
+    handleRemove = (item) => {
+        let index = this.props.items.indexOf(item);
+        this.props.removeItem(index);
+        let configObj = this.deleteConfig()
+        fetch(`http://localhost:3000/order_items/${item.id}`, configObj)
+            .catch(error => console.log(error))
+    }
+
+    deleteConfig() {
+        let configObj = {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${this.props.user.token}`
+            }
+        }
+        return configObj
+    }
+
     render() {
         return (
             <div>
@@ -95,7 +116,7 @@ class ItemSelection extends React.Component {
                 <button><Link to={'/shop/delivery_preferences'}>Next: Delivery Options</Link></button>
                 <h2>Cart Items:</h2>
                 <ul>
-                    {this.props.items.map(item => <li key={item}><strong>{item.name}</strong> {item.quantity}x <button>Remove</button></li>)}
+                    {this.props.items.map(item => <ItemCard key={item.id} item={item} handleRemove={this.handleRemove} />)}
                 </ul>
             </div>
         );
@@ -117,6 +138,9 @@ const mapDispatchToProps = dispatch => {
         },
         addItem: (newItem) => {
             dispatch(addItem(newItem))
+        },
+        removeItem: (index) => {
+            dispatch(removeItem(index))
         }
     }
 }

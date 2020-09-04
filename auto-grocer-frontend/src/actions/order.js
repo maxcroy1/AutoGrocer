@@ -12,6 +12,13 @@ export const addItem = (newItem) => {
     }
 }
 
+export const removeItem = (index) => {
+    return {
+        type: "REMOVE_ITEM",
+        index: index
+    }
+}
+
 export const selectionComplete = () => {
     return {
         type: "SELECTION_COMPLETE"

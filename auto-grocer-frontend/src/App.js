@@ -37,7 +37,7 @@ class App extends React.Component {
               { this.props.registration_complete ? <Redirect to='/shop' /> : <Registration /> }
             </Route>
             <Route path='/shop'>
-            { this.props.user ? <Shop /> : <Redirect to="/login" /> }
+            { this.props.user.token ? <Shop /> : <Redirect to="/login" /> }
             </Route>
             <Route exact path='/order_complete'>
               <OrderComplete />

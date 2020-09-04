@@ -68,6 +68,12 @@ function orderReducer(state = {id: "", items: []}, action) {
                 items: [...state.items, action.item]
             }
 
+        case "REMOVE_ITEM":
+            return state = {
+                ...state,
+                items: [...state.items.slice(0,action.index), ...state.items.slice(action.index + 1)]
+            }
+
         case "ORDER_CONFIRMED": 
             return state = {
                 ...state,

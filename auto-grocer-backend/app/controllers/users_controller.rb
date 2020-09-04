@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
     def profile
-        render json: { user: UserSerializer.new(current_user), billing_settings: BillingSettingSerializer.new(current_user.billing_setting), orders: current_user.orders }, status: :accepted
+        render json: { user: UserSerializer.new(current_user), billing_settings: BillingSettingSerializer.new(current_user.billing_setting), orders: ActiveModel::Serializer::CollectionSerializer.new(current_user.orders, serializer: OrderSerializer) }, status: :accepted
     end
 
     def create 

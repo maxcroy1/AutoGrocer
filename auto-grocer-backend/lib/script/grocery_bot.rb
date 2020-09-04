@@ -52,8 +52,22 @@ response = client.decode_recaptcha_v2(options)
 browser.execute_script("document.getElementById('g-recaptcha-response').innerHTML='#{response.text}';")
 browser.execute_script("___grecaptcha_cfg.clients[0].V.V.callback('#{response.text}')")
 
-sleep(300)
+#Start search
+browser.fill_in("Search Wegmans...", {placeholder: true, with: "Apples"}).native.send_keys(:return)
+sleep(7)
+browser.first(:xpath, ".//div[contains(@class, 'item-card-contents')]").click
+sleep(2)
+browser.find_button('Add to cart').click
+sleep(2)
+browser.find(:xpath, ".//button[contains(@aria-label, 'Close modal')]").click
+sleep(2)
 
-
-
+#Start checkout
+browser.find_button('Cart').click
+sleep(2)
+browser.find(:xpath, ".//a[contains(@href, 'checkout_v3')]").click
 sleep(10)
+browser.find(:xpath, ".//text()[contains(.,'5pm - 7pm')]//parent::div").click
+sleep(5)
+browser.click_on('Continue')
+sleep(300)

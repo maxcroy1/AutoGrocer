@@ -109,7 +109,7 @@ class ItemSelection extends React.Component {
                     <label htmlFor="item">Item:</label><br />
                     <input type="text" name="item" onChange={this.handleChange} />
                     <select name="quantity" onChange={this.handleChange}>
-                        {this.quantityGenerator().map(num => <option value={num} key={num} defaultValue={num === 1 ? true : false}>{num}</option>)}
+                        {this.quantityGenerator().map(num => <option value={num} key={num}>{num}</option>)}
                     </select>
                     <input type="submit" value="Add Item" />
                 </form><br />

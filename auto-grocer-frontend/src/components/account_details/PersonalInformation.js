@@ -20,9 +20,9 @@ class PersonalInformation extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        fname: state.user.fname,
-        lname: state.user.lname,
-        email: state.user.email
+        fname: state.user.info.user.fname,
+        lname: state.user.info.user.lname,
+        email: state.user.info.user.email
     }
 }
 

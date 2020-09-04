@@ -18,7 +18,7 @@ class AccountInformation extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        username: state.user.username
+        username: state.user.info.user.username
     }
 }
 

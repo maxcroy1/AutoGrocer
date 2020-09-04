@@ -18,7 +18,7 @@ class InstacartCredentials extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        email: state.user.billing_settings.instacart_email
+        email: state.user.info.billing_settings.instacart_email
     }
 }
 

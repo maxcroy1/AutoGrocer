@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addOptions } from '../actions/delivery';
+import { addOptions } from '../../actions/delivery';
 
 class DeliveryPreferences extends React.Component {
     state = {
@@ -45,7 +45,7 @@ class DeliveryPreferences extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${this.props.user}`
+                'Authorization': `Bearer ${this.props.user.token}`
             },
             body: JSON.stringify(formData)
         }

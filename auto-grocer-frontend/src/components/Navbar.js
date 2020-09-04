@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logOut } from '../actions/auth';
+import { fetchUserData, logOut } from '../actions/auth';
 import { registrationLogout } from '../actions/registration';
 
 class Navbar extends React.Component {
@@ -15,7 +15,7 @@ class Navbar extends React.Component {
     render() {
         return (
             <nav>
-                <NavLink to="/" exact>
+                <NavLink to="/" exact>  
                     AutoGrocer Logo
                 </NavLink>
                 <NavLink to="/" exact>
@@ -24,8 +24,8 @@ class Navbar extends React.Component {
                 <NavLink to="/shop" exact>
                     Shop
                 </NavLink>
-                {this.props.user ? <NavLink to="/account_details" exact>Account</NavLink> : <NavLink to="/register" exact>Sign up</NavLink> }
-                {this.props.user ? <button onClick={this.handleLogout}>Log out</button>  : <button><NavLink to="/login" exact>Log in</NavLink></button>}
+                {this.props.user.token ? <NavLink to="/account_details" onClick={this.props.fetchUserData} exact>Account</NavLink> : <NavLink to="/register" exact>Sign up</NavLink> }
+                {this.props.user.token ? <NavLink to="/" onClick={this.handleLogout}>Log out</NavLink>  : <button><NavLink to="/login" exact>Log in</NavLink></button>}
             </nav>
         );
     }
@@ -42,6 +42,9 @@ const mapDispatchToProps = dispatch => {
         },
         registrationLogout: () => {
             dispatch(registrationLogout())
+        },
+        fetchUserData: () => {
+            dispatch(fetchUserData())
         }
     }
 }

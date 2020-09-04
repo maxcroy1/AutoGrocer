@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-import { fetchUserData } from './actions/auth';
+import { registerUser } from './actions/auth';
 import { completeRegistration } from './actions/registration';
 import Navbar from './components/Navbar';
 import Home from './containers/Home';
@@ -16,8 +16,8 @@ class App extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('ag_token')) {
-      this.props.fetchUserData();
-      this.props.completeRegistration();
+      console.log('its here')
+      this.props.registerUser(localStorage.getItem('ag_token'));
     }
   }
 
@@ -31,7 +31,7 @@ class App extends React.Component {
               <Home />
             </Route>
             <Route exact path='/login'>
-              { this.props.user ? <Redirect to='/shop' /> : <Login /> }
+              { this.props.user.token ? <Redirect to='/shop' /> : <Login /> }
             </Route>
             <Route path='/register'>
               { this.props.registration_complete ? <Redirect to='/shop' /> : <Registration /> }
@@ -61,8 +61,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = dispatch => {
   return {
-    fetchUserData: () => {
-      dispatch(fetchUserData())
+    registerUser: (token) => {
+      dispatch(registerUser(token))
     },
     completeRegistration: () => {
       dispatch(completeRegistration())

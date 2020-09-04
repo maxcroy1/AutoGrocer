@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { initOrder, addItem, selectionComplete } from '../actions/order';
+import { initOrder, addItem } from '../../actions/order';
 
 class ItemSelection extends React.Component {
 
@@ -26,7 +26,7 @@ class ItemSelection extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${this.props.user}`
+                'Authorization': `Bearer ${this.props.user.token}`
             }
         }
         return configObj
@@ -73,17 +73,11 @@ class ItemSelection extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${this.props.user}`
+                'Authorization': `Bearer ${this.props.user.token}`
             },
             body: JSON.stringify(formData)
         }
         return configObj
-    }
-
-    handleComplete = () => {
-        if (this.props.items.length > 0) {
-            this.props.selectionComplete();
-        }
     }
 
     render() {
@@ -98,7 +92,7 @@ class ItemSelection extends React.Component {
                     </select>
                     <input type="submit" value="Add Item" />
                 </form><br />
-                <button onClick={this.handleComplete}><Link to={'/shop/delivery_preferences'}>Next: Delivery Options</Link></button>
+                <button><Link to={'/shop/delivery_preferences'}>Next: Delivery Options</Link></button>
                 <h2>Cart Items:</h2>
                 <ul>
                     {this.props.items.map(item => <li key={item}><strong>{item.name}</strong> {item.quantity}x <button>Remove</button></li>)}
@@ -123,9 +117,6 @@ const mapDispatchToProps = dispatch => {
         },
         addItem: (newItem) => {
             dispatch(addItem(newItem))
-        },
-        selectionComplete: () => {
-            dispatch(selectionComplete())
         }
     }
 }

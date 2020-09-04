@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData } from '../actions/auth';
+import { registerUser } from '../../actions/auth';
 
 class AccountSettings extends React.Component {
     state = {
@@ -26,7 +26,7 @@ class AccountSettings extends React.Component {
                 .then(resp => resp.json())
                 .then(json => {
                     localStorage.setItem("ag_token", json.jwt)
-                    this.props.fetchUserData()
+                    this.props.registerUser(localStorage.getItem("ag_token"))
                 })
                 .catch(error => console.log(error))
         }
@@ -82,8 +82,8 @@ class AccountSettings extends React.Component {
 
 const mapDispactchToProps = dispatch => {
     return {
-        fetchUserData: () => {
-            dispatch(fetchUserData())
+        registerUser: (token) => {
+            dispatch(registerUser(token))
         }
     }
 }

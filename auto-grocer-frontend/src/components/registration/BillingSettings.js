@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { completeRegistration } from '../actions/registration';
+import { completeRegistration } from '../../actions/registration';
 
 class BillingSettings extends React.Component {
     state = {
@@ -104,7 +104,7 @@ class BillingSettings extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    return { user: state.user };
+    return { user: state.user.token };
 };
 
 const mapDispactchToProps = dispatch => {

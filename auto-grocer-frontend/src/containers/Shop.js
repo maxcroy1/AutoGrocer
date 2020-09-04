@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
-import ItemSelection from '../components/ItemSelection';
-import DeliveryPreferences from '../components/DeliveryPreferences';
-import Confirmation from '../components/Confirmation';
+import ItemSelection from '../components/shop/ItemSelection';
+import DeliveryPreferences from '../components/shop/DeliveryPreferences';
+import Confirmation from '../components/shop/Confirmation';
 
-function Shop() {
+function Shop(props) {
 
     let { path } = useRouteMatch();
 
@@ -16,7 +17,7 @@ function Shop() {
                     <ItemSelection />
                 </Route>
                 <Route exact path={`${path}/delivery_preferences`}>
-                    <DeliveryPreferences />
+                    {props.items.length === 0 ? <Redirect to={`${path}/item_selection`} /> : <DeliveryPreferences /> }
                 </Route>
                 <Route exact path={`${path}/confirmation`}>
                     <Confirmation />
@@ -29,4 +30,10 @@ function Shop() {
     );
 }
 
-export default Shop;
+const mapStateToProps = (state) => {
+    return {
+        items: state.order.items
+    }
+}
+
+export default connect(mapStateToProps)(Shop);

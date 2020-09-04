@@ -16,7 +16,7 @@ class ScheduledOrders extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        orders: state.user.orders
+        orders: state.user.info.orders
     }
 }
 

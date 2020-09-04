@@ -11,19 +11,17 @@ export function fetchUserData() {
         }
         fetch('http://localhost:3000/profile', configObj)
             .then(resp => resp.json())
-            .then(json => {
-                console.log(json)
-                dispatch({ type: "LOGIN_USER", json })
-            })
+            .then(json => dispatch({ type: "LOGIN_USER", json }))
+            .catch(dispatch({type: "REGISTER_USER", user: localStorage.getItem('ag_token')}))
     }
 }
 
-// export const logIn = (userToken) => {
-//     return {
-//         type: "LOGIN_USER",
-//         user: userToken
-//     }
-// }
+export const registerUser = (userToken) => {
+    return {
+        type: "REGISTER_USER",
+        user: userToken
+    }
+}
 
 export const logOut = () => {
     return { type: "LOGOUT_USER" }

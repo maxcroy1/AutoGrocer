@@ -24,12 +24,12 @@ class PaymentMethod extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        card: state.user.billing_settings.card_num,
-        street_address: state.user.billing_settings.street_address,
-        city: state.user.billing_settings.city,
-        state: state.user.billing_settings.state,
-        zipcode: state.user.billing_settings.zipcode,
-        expiration: state.user.billing_settings.expiration
+        card: state.user.info.billing_settings.card_num,
+        street_address: state.user.info.billing_settings.street_address,
+        city: state.user.info.billing_settings.city,
+        state: state.user.info.billing_settings.state,
+        zipcode: state.user.info.billing_settings.zipcode,
+        expiration: state.user.info.billing_settings.expiration
     }
 }
 

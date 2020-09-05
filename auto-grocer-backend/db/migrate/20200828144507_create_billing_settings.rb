@@ -5,7 +5,8 @@ class CreateBillingSettings < ActiveRecord::Migration[6.0]
       t.string :instacart_email
       t.string :instacart_pass
       t.string :card_num
-      t.date :expiration
+      t.string :exp_month
+      t.string :exp_year
       t.string :cvc
       t.string :street_address
       t.string :city

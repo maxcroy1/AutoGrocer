@@ -18,7 +18,7 @@ class BillingSettingsController < ApplicationController
 
     private
     def billing_settings_params
-        params.require(:billing_setting).permit(:instacart_email, :instacart_pass, :card_num, :expiration, :cvc, :street_address, :city, :state, :zipcode)
+        params.require(:billing_setting).permit(:instacart_email, :instacart_pass, :card_num, :exp_month, :exp_year, :cvc, :street_address, :city, :state, :zipcode)
     end
 
 end

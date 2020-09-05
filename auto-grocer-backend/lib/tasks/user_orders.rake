@@ -31,9 +31,9 @@ namespace :user_orders do
       #Interact with login screen
       browser.first(:button, 'Log in').click
       sleep(2)
-      browser.fill_in('nextgen-authenticate.all.log_in_email', with: `#{order.user.billing_setting.instacart_email}`)
+      browser.fill_in('nextgen-authenticate.all.log_in_email', with: order.user.billing_setting.instacart_email)
       sleep(2)
-      browser.fill_in('nextgen-authenticate.all.log_in_password', with: `#{order.user.billing_setting.instacart_pass}`)
+      browser.fill_in('nextgen-authenticate.all.log_in_password', with: order.user.billing_setting.instacart_pass)
       sleep(2)
       browser.find_field('Password (min 6 characters)').native.send_keys(:return)
       sleep(3)
@@ -62,7 +62,7 @@ namespace :user_orders do
 
       #Start search & add items to cart
       order.items.each do |item|
-        browser.fill_in("Search Wegmans...", {placeholder: true, with: `#{item.name}`}).native.send_keys(:return)
+        browser.fill_in("Search Wegmans...", {placeholder: true, with: item.name}).native.send_keys(:return)
         sleep(7)
         browser.first(:xpath, ".//div[contains(@class, 'item-card-contents')]").click
         sleep(2)
@@ -85,13 +85,13 @@ namespace :user_orders do
       end
       browser.find(:xpath, ".//button[contains(@aria-label, 'Edit:')]").click
       sleep(7)
-      browser.fill_in("Address line 1", {placeholder: true, with: `#{order.delivery_address_one}`})
+      browser.fill_in("Address line 1", {placeholder: true, with: order.delivery_address_one})
       sleep(2)
-      browser.fill_in("Address line 2 (optional)", {placeholder: true, with: `#{order.delivery_address_two}`})
+      browser.fill_in("Address line 2 (optional)", {placeholder: true, with: order.delivery_address_two})
       sleep(2)
-      browser.fill_in("Zip code", {placeholder: true, with: `#{order.zipcode}`})
+      browser.fill_in("Zip code", {placeholder: true, with: order.zipcode})
       sleep(2)
-      browser.fill_in("Instructions for delivery (optional)", {placeholder: true, with: `#{order.instructions}`})
+      browser.fill_in("Instructions for delivery (optional)", {placeholder: true, with: order.instructions})
       sleep(2)
       browser.first(:xpath, ".//text()[contains(., 'Confirm')]//parent::button").click
       sleep(7)
@@ -102,11 +102,11 @@ namespace :user_orders do
           sleep(7)
       end
       day_abbr = order.day.slice(0, 3).upcase
-      browser.first(:xpath, ".//text()[contains(., `#{day_abbr}`)]//parent::span").click
+      browser.first(:xpath, ".//text()[contains(., '#{day_abbr}')]//parent::span").click
       sleep(5)
       browser.first(:xpath, ".//button[contains(@aria-controls, 'Delivery options')]").click
       sleep(5)
-      browser.find(:xpath, ".//text()[contains(.,`#{order.time}`)]//parent::div").click
+      browser.find(:xpath, ".//text()[contains(.,'#{order.time}')]//parent::div").click
       sleep(5)
 
       #Set delivery instructions
@@ -114,7 +114,7 @@ namespace :user_orders do
           browser.find(:xpath, ".//button[contains(@aria-label, 'Change Delivery Instructions')]").click
           sleep(7)
       end
-      browser.fill_in("Add delivery instructions (optional)", {placeholder: true, with: `#{order.instructions}`})
+      browser.fill_in("Add delivery instructions (optional)", {placeholder: true, with: order.instructions})
       sleep(5)
       browser.click_on('Continue')
       sleep(5)
@@ -124,7 +124,7 @@ namespace :user_orders do
           browser.find(:xpath, ".//button[contains(@aria-label, 'Change Mobile number')]").click
           sleep(7)
       end
-      browser.fill_in("Mobile number (10-digit)", {placeholder: true, with: `#{order.mobile_num}`})
+      browser.fill_in("Mobile number (10-digit)", {placeholder: true, with: order.mobile_num})
       sleep(5)
       browser.click_on('Save')
       sleep(5)
@@ -135,26 +135,26 @@ namespace :user_orders do
           sleep(7)
       end
       last_four = order.user.billing_setting.card_num.slice(-4, 4)
-      if browser.has_xpath?(".//text()[contains(., `#{last_four}`)]//parent::div")
+      if browser.has_xpath?(".//text()[contains(., '#{last_four}')]//parent::div")
           browser.first(:xpath, ".//text()[contains(., 'Choose payment method')]//parent::button").click
           sleep(5)
       else
           browser.first(:xpath, ".//text()[contains(., 'Add new card')]//parent::a").click
           sleep(5)
-          browser.find(:xpath, ".//input[contains(@aria-label, 'Credit or debit card number')]").set(`#{order.user.billing_setting.card_num}`)
+          browser.fill_in('Card Number', {with: order.user.billing_setting.card_num})
           sleep(5)
-          browser.find(:xpath, ".//input[contains(@aria-label, 'Credit or debit card expiration date')]").set(`#{order.user.billing_setting.exp_month}/#{order.user.billing_setting.exp_year}`)
+          browser.find(:xpath, ".//input[contains(@aria-label, 'Credit or debit card expiration date')]").set("#{order.user.billing_setting.exp_month}/#{order.user.billing_setting.exp_year}")
           sleep(5)
-          browser.find(:xpath, ".//input[contains(@aria-label, 'Credit or debit card CVC/CVV')]").set(`#{order.user.billing_setting.cvc}`)
+          browser.find(:xpath, ".//input[contains(@aria-label, 'Credit or debit card CVC/CVV')]").set(order.user.billing_setting.cvc)
           sleep(5)
-          if !browser.has_xpath?(".//text()[contains(., `#{order.user.billing_setting.street_address}`)]//parent::div")
+          if !browser.has_xpath?(".//text()[contains(., '#{order.user.billing_setting.street_address}')]//parent::div")
               browser.first(:xpath, ".//text()[contains(., 'Billing address')]//parent::label").click
               sleep(5)
               browser.first(:xpath, ".//text()[contains(., 'Use a new address...')]//parent::div").click
               sleep(5)
-              browser.fill_in("Billing Address", {placeholder: true, with: `#{order.user.billing_setting.street_address}`})
+              browser.fill_in("Billing Address", {placeholder: true, with: order.user.billing_setting.street_address})
               sleep(5)
-              browser.fill_in("Zip code", {placeholder: true, with: `#{order.user.billing_setting.zipcode}`})
+              browser.fill_in("Zip code", {placeholder: true, with: order.user.billing_setting.zipcode})
               sleep(5)
           end
           #Find div with id grecaptcha-logo

@@ -9,7 +9,8 @@ class BillingSettings extends React.Component {
         instacart_pass: "",
         instacart_pass_conf: "",
         card_num: "",
-        expiration: "",
+        exp_month: "",
+        exp_year: "",
         cvc: "",
         street_address: "",
         city: "",
@@ -40,7 +41,8 @@ class BillingSettings extends React.Component {
             instacart_email: this.state.instacart_email,
             instacart_pass: this.state.instacart_pass,
             card_num: this.state.card_num,
-            expiration: this.state.expiration,
+            exp_month: this.state.exp_month,
+            exp_year: this.state.exp_year,
             cvc: this.state.cvc,
             street_address: this.state.street_address,
             city: this.state.city,
@@ -79,8 +81,11 @@ class BillingSettings extends React.Component {
                 <label htmlFor="card_num">Credit Card Number:</label><br />
                 <input type="text" name="card_num" onChange={this.handleChange} /><br />
 
-                <label htmlFor="expiration">Expiration:</label><br />
-                <input type="text" name="expiration" onChange={this.handleChange} /><br />
+                <label htmlFor="expiration">Expiration Month (MM):</label><br />
+                <input type="text" name="exp_month" onChange={this.handleChange} /><br />
+
+                <label htmlFor="expiration">Expiration Year (YY):</label><br />
+                <input type="text" name="exp_year" onChange={this.handleChange} /><br />
 
                 <label htmlFor="cvc">CVC:</label><br />
                 <input type="text" name="cvc" onChange={this.handleChange} /><br />

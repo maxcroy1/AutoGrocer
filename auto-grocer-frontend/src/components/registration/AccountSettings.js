@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/auth';
+import { Button, Form } from 'react-bootstrap';
 
 class AccountSettings extends React.Component {
     state = {
@@ -55,29 +56,38 @@ class AccountSettings extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="py-2">
                 <p>First, we need to set up your AutoGrocer account so you can login periodically to change your settings.</p>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="fname">First Name:</label><br />
-                    <input type="text" name="fname" onChange={this.handleChange} /><br />
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group>
+                        <Form.Label htmlFor="fname">First Name:</Form.Label><br />
+                        <Form.Control type="text" name="fname" onChange={this.handleChange} /><br />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="lname">Last Name:</Form.Label><br />
+                        <Form.Control type="text" name="lname" onChange={this.handleChange} /><br />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="email">Email Address:</Form.Label><br />
+                        <Form.Control type="text" name="email" onChange={this.handleChange} /><br />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="username">Username:</Form.Label><br />
+                        <Form.Control type="text" name="username" onChange={this.handleChange} /><br />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="password">Password:</Form.Label><br />
+                        <Form.Control type="password" name="password" onChange={this.handleChange} /><br />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="password_conf">Confirm Password:</Form.Label><br />
+                        <Form.Control type="password" name="password_conf" onChange={this.handleChange} /><br />
+                    </Form.Group>
 
-                    <label htmlFor="lname">Last Name:</label><br />
-                    <input type="text" name="lname" onChange={this.handleChange} /><br />
-
-                    <label htmlFor="email">Email Address:</label><br />
-                    <input type="text" name="email" onChange={this.handleChange} /><br />
-
-                    <label htmlFor="username">Username:</label><br />
-                    <input type="text" name="username" onChange={this.handleChange} /><br />
-
-                    <label htmlFor="password">Password:</label><br />
-                    <input type="password" name="password" onChange={this.handleChange} /><br />
-
-                    <label htmlFor="password_conf">Confirm Password:</label><br />
-                    <input type="password" name="password_conf" onChange={this.handleChange} /><br />
-
-                    <input type="submit" value="Next: Billing Info" />
-                </form>
+                    <Button variant="success" type="submit">
+                        Next: Billing Info
+                    </Button>
+                </Form>
             </div>
         );
     }

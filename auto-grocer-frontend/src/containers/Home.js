@@ -18,13 +18,13 @@ function Home() {
             </Container>
             <Container fluid>
                 <Row style={{minHeight: '45vh'}}>
-                    <Col lg="3"></Col>
-                    <Col lg="6" className='my-auto text-center'>
+                    <Col md="3"></Col>
+                    <Col md="6" className='my-auto text-center px-3'>
                         <h2>About</h2>
                         <p>Autogrocer is an automated service that orders groceries for you on a weekly schedule so you don't have to worry about filling your fridge. All you have to do is add your Instacart login information, select the groceries you'd like to receive in your order, and choose a date and a time for your deliveries.</p>
                         <p>Autogrocer will handle the rest.</p>
                     </Col>
-                    <Col lg="3">
+                    <Col md="3">
                     </Col>
                 </Row>
             </Container>

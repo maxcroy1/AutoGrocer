@@ -39,7 +39,7 @@ class NavBar extends React.Component {
                                 {this.props.user.token ? <NavLink to="/account_details" onClick={this.props.fetchUserData} exact activeClassName="active_menu_item" className="menu_item">Account</NavLink> : <NavLink to="/register" exact activeClassName="active_menu_item" className="menu_item">Sign up</NavLink> }
                             </Nav.Link>
                             <Nav.Link>
-                                {this.props.user.token ? <NavLink to="/" onClick={this.handleLogout} className="menu_item">Log out</NavLink>  : <button><NavLink to="/login" exact activeClassName="active_menu_item" className="menu_item">Log in</NavLink></button>}
+                                {this.props.user.token ? <NavLink to="/" onClick={this.handleLogout} className="menu_item">Log out</NavLink>  : <NavLink to="/login" exact activeClassName="active_menu_item" className="menu_item">Log in</NavLink>}
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

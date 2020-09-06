@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Container } from 'react-bootstrap';
 import AccountSettings from '../components/registration/AccountSettings';
 import BillingSettings from '../components/registration/BillingSettings';
 
@@ -8,7 +9,7 @@ const Registration = (props) => {
     let { path } = useRouteMatch();
 
     return (
-        <div>
+        <Container className="py-2">
             <h1>Sign Up</h1>
             <Switch>
                 <Route exact path={`${path}/account_settings`}>
@@ -21,7 +22,7 @@ const Registration = (props) => {
                     <Redirect to={`${path}/account_settings`} />
                 </Route>
             </Switch>
-        </div>
+        </Container>
     );
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import ItemSelection from '../components/shop/ItemSelection';
 import DeliveryPreferences from '../components/shop/DeliveryPreferences';
 import Confirmation from '../components/shop/Confirmation';
@@ -10,8 +11,7 @@ function Shop(props) {
     let { path } = useRouteMatch();
 
     return (
-        <div>
-            <h1>Let's shop!</h1>
+        <Container className="py-3">
             <Switch>
                 <Route exact path={`${path}/item_selection`}>
                     <ItemSelection />
@@ -26,7 +26,7 @@ function Shop(props) {
                     <Redirect to={`${path}/item_selection`} />
                 </Route>
             </Switch>
-        </div>
+        </Container>
     );
 }
 

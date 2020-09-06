@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 import { initOrder, addItem, removeItem } from '../../actions/order';
 import ItemCard from './ItemCard';
 
@@ -103,21 +104,25 @@ class ItemSelection extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="py-2">
+                <h2>Item Selection</h2>
                 <p>Enter the name and quantity of the items that you'd like to add to your order below.</p>
-                <form onSubmit={this.handleAdd}>
-                    <label htmlFor="item">Item:</label><br />
-                    <input type="text" name="item" onChange={this.handleChange} />
-                    <select name="quantity" onChange={this.handleChange}>
-                        {this.quantityGenerator().map(num => <option value={num} key={num}>{num}</option>)}
-                    </select>
-                    <input type="submit" value="Add Item" />
-                </form><br />
-                <button><Link to={'/shop/delivery_preferences'}>Next: Delivery Options</Link></button>
-                <h2>Cart Items:</h2>
+                <Form onSubmit={this.handleAdd}>
+                    <Form.Label htmlFor="item">Item:</Form.Label><br />
+                    <div className="form-inline">
+                        <Form.Control type="text" name="item" onChange={this.handleChange} />
+                        <Form.Label className="pl-2">Qty: </Form.Label>
+                        <Form.Control as="select" className="dropdown">
+                            {this.quantityGenerator().map(num => <option key={num}>{num}</option>)}
+                        </Form.Control>
+                    </div>
+                    <Button type="submit" variant="success" className="my-3">Add Item</Button>
+                </Form><br />
+                <h3>Cart Items:</h3>
                 <ul>
                     {this.props.items.map(item => <ItemCard key={item.id} item={item} handleRemove={this.handleRemove} />)}
                 </ul>
+                <Button variant="success"><Link to={'/shop/delivery_preferences'}  className="button-link">Next: Delivery Options</Link></Button>
             </div>
         );
     }

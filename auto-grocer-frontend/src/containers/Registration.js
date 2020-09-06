@@ -10,7 +10,7 @@ const Registration = (props) => {
 
     return (
         <Container className="py-2">
-            <h1>Sign Up</h1>
+            <h1 className="py-2">Sign Up</h1>
             <Switch>
                 <Route exact path={`${path}/account_settings`}>
                     { props.user.token ? <Redirect to={`${path}/billing_preferences`} /> :<AccountSettings /> }

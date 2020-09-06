@@ -2,6 +2,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato', sans-serif;
 }
 
+h1 {
+    font-size: 2.2rem !important;
+}
+
 * {
     font-family: 'Roboto', sans-serif;
 }
@@ -22,10 +26,27 @@ a.signup_button {
     text-decoration: underline;
 }
 
-.menu_item {
+.menu_item, .button-link {
     color: #FFF;
+}
+
+.button-link:hover {
+    color: #FFF;
+    text-decoration: none;
 }
 
 .menu_item:hover {
     color: #FF8C00;
+}
+
+.form-control {
+    width: 50% !important;
+}
+
+.form-group {
+    margin-bottom: 0rem !important;
+}
+
+.dropdown {
+    width: 55px !important;
 }

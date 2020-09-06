@@ -15,8 +15,7 @@ class Confirmation extends React.Component {
             <div>
                 <h1>Order Confirmation</h1>
                 <p>Your groceries will be delivered every <strong>{this.props.day}</strong> between <strong>{this.props.time}</strong>.</p>
-                <p><strong>Delivery Address:</strong></p>
-                <p>{this.props.address_one}<br />{this.props.address_two}<br />{this.props.zipcode}</p>
+                <p><strong>Delivery Address:</strong><br />{this.props.address_one}<br />{this.props.address_two}<br />{this.props.zipcode}</p>
                 <p><strong>Delivery Instructions:</strong><br />{this.props.instructions}</p>
                 <p><strong>Contact Number:</strong><br />{this.props.phone}</p>
                 <p><strong>Items in Cart:</strong></p>

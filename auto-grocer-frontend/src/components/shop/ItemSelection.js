@@ -104,7 +104,7 @@ class ItemSelection extends React.Component {
     render() {
         return (
             <div>
-                <h2>Enter the name and quantity of the item that you'd like to add to your order below</h2>
+                <p>Enter the name and quantity of the items that you'd like to add to your order below.</p>
                 <form onSubmit={this.handleAdd}>
                     <label htmlFor="item">Item:</label><br />
                     <input type="text" name="item" onChange={this.handleChange} />

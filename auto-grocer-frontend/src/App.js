@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import { registerUser } from './actions/auth';
 import { completeRegistration } from './actions/registration';
-import Navbar from './components/Navbar';
+import NavBar from './components/NavBar';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import Registration from './containers/Registration';
@@ -24,7 +24,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Navbar />
+        <NavBar />
         <div className="App">
           <Switch>
             <Route exact path='/'>

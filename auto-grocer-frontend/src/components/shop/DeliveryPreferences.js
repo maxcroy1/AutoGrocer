@@ -56,7 +56,7 @@ class DeliveryPreferences extends React.Component {
         return (
             <div>
                     <form>
-                        <h2>Where would you like your food to be delivered?</h2>
+                        <p>Where would you like your food to be delivered?</p>
                         <label htmlFor="address_one">Address Line 1:</label> <br />
                         <input type="text" name="address_one" defaultValue={this.state.address_one} onChange={this.handleChange} /> <br />
                         <label htmlFor="address_two">Address Line 2:</label> <br />
@@ -68,18 +68,18 @@ class DeliveryPreferences extends React.Component {
                         <label htmlFor="instructions">Delivery instructions:</label> <br />
                         <input type="text" name="instructions" defaultValue={this.state.instructions} onChange={this.handleChange} /> <br />
 
-                        <h2>When would you like your food to be delivered?</h2>
-                        <h3>Day of week:</h3>
-                            <div onChange={this.handleChange}>
-                                <input type="radio" value="Sunday" name="day" checked={this.state.day === "Sunday" ? true : false} /> Sunday <br />
-                                <input type="radio" value="Monday" name="day" checked={this.state.day === "Monday" ? true : false} /> Monday <br />
-                                <input type="radio" value="Tuesday" name="day" checked={this.state.day === "Tuesday" ? true : false} /> Tuesday <br />
-                                <input type="radio" value="Wednesday" name="day" checked={this.state.day === "Wednesday" ? true : false} /> Wednesday <br />
-                                <input type="radio" value="Thursday" name="day" checked={this.state.day === "Thursday" ? true : false} /> Thursday <br />
-                                <input type="radio" value="Friday" name="day" checked={this.state.day === "Friday" ? true : false} /> Friday <br />
-                                <input type="radio" value="Saturday" name="day" checked={this.state.day === "Saturday" ? true : false} /> Saturday <br />
-                            </div>
-                        <h3>Time of day:</h3>
+                        <p>When would you like your food to be delivered?</p>
+                        <label>Day of week:</label>
+                        <div onChange={this.handleChange}>
+                            <input type="radio" value="Sunday" name="day" checked={this.state.day === "Sunday" ? true : false} /> Sunday <br />
+                            <input type="radio" value="Monday" name="day" checked={this.state.day === "Monday" ? true : false} /> Monday <br />
+                            <input type="radio" value="Tuesday" name="day" checked={this.state.day === "Tuesday" ? true : false} /> Tuesday <br />
+                            <input type="radio" value="Wednesday" name="day" checked={this.state.day === "Wednesday" ? true : false} /> Wednesday <br />
+                            <input type="radio" value="Thursday" name="day" checked={this.state.day === "Thursday" ? true : false} /> Thursday <br />
+                            <input type="radio" value="Friday" name="day" checked={this.state.day === "Friday" ? true : false} /> Friday <br />
+                            <input type="radio" value="Saturday" name="day" checked={this.state.day === "Saturday" ? true : false} /> Saturday <br />
+                        </div><br />
+                        <label>Time of day:</label>
                         <div onChange={this.handleChange}>
                             <input type="radio" value="10am - Noon" name="time" checked={this.state.time === "10am - Noon" ? true : false} /> 10am - Noon <br />
                             <input type="radio" value="11am - 1pm" name="time" checked={this.state.time === "11am - 1pm" ? true : false} /> 11am - 1pm <br />

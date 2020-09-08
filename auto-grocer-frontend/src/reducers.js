@@ -4,7 +4,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     registration_complete: registrationReducer,
     order: orderReducer,
-    delivery: deliveryReducer
+    delivery: deliveryReducer,
+    items: itemsReducer
 });
 
 export default rootReducer;
@@ -111,6 +112,16 @@ function deliveryReducer(state = {day: "", time: "", address_one: "", address_tw
                 phone: "",
                 instructions: ""
             }
+
+        default:
+            return state;
+    }
+}
+
+function itemsReducer(state = {items: []}, action) {
+    switch(action.type) {
+        case "ADD_ITEMS":
+            return state = action.items
 
         default:
             return state;

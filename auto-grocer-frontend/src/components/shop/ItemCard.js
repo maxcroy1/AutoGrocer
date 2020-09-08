@@ -4,7 +4,8 @@ import { Button } from 'react-bootstrap';
 function ItemCard(props) {
     return (
         <li>
-            <strong>{props.item.name}</strong> {props.item.quantity}x &nbsp;
+            <img src={props.item.img_url} height="150px" style={{paddingRight: "50px"}} />
+            <strong>{props.item.name}</strong> {props.item.quantity}x<br />
             <Button variant="secondary" size="sm" onClick={() => props.handleRemove(props.item)}>Remove</Button>
         </li>
     );

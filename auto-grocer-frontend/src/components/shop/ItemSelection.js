@@ -2,14 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import AsyncSelect from 'react-select/async';
 import { initOrder, addItem, removeItem } from '../../actions/order';
 import ItemCard from './ItemCard';
 
 class ItemSelection extends React.Component {
 
     state = {
-        item: "",
-        quantity: "1"
+        selected_items: [], 
+        inputValue: '',
+        searched_item: '', 
+        quantity: '1'
+    }
+
+    getItemsAPI = (input) => {
+        if (!input) {
+            return Promise.resolve({options: []});
+        }
+
+        return fetch(`http://localhost:3000/items/search?query="${input}`)
+            .then(resp => resp.json())
+            .then(json => {
+                const formatted_items = json.map(item => new Object({value: item.id, label: <div><img src={item.img_url} height="70px" />{item.name} - {item.price}</div>}))
+                return formatted_items
+            })
     }
 
     componentDidMount() {
@@ -20,6 +36,7 @@ class ItemSelection extends React.Component {
                 .then(json => this.props.initOrder(json.orderID))
                 .catch(error => console.log(error))
         }
+        console.log(this.getItemsAPI())
     }
 
     orderConfigObj = () => {
@@ -43,9 +60,18 @@ class ItemSelection extends React.Component {
     }
 
     handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
+        console.log(event.value)
+        if (typeof event.value === "undefined") {
+            this.setState({
+                quantity: event.target.value
+            })
+        }
+        else {
+            this.setState({
+                searched_item: event.value
+            })
+        }
+        console.log(this.state)
     }
 
     handleAdd = (event) => {
@@ -62,7 +88,7 @@ class ItemSelection extends React.Component {
         let formData = {
             order_item: {
                 item: {
-                    name: this.state.item,
+                    id: this.state.searched_item,
                     quantity: this.state.quantity
                 },
                 order: {
@@ -103,6 +129,8 @@ class ItemSelection extends React.Component {
     }
 
     render() {
+
+
         return (
             <div className="py-2">
                 <h2>Item Selection</h2>
@@ -110,9 +138,9 @@ class ItemSelection extends React.Component {
                 <Form onSubmit={this.handleAdd}>
                     <Form.Label htmlFor="item">Item:</Form.Label><br />
                     <div className="form-inline">
-                        <Form.Control type="text" name="item" onChange={this.handleChange} />
+                        <AsyncSelect value={this.state.value} loadOptions={this.getItemsAPI} placeholder="Search for..." onChange={this.handleChange} /><br />
                         <Form.Label className="pl-2">Qty: </Form.Label>
-                        <Form.Control as="select" className="dropdown">
+                        <Form.Control as="select" onChange={this.handleChange} className="dropdown">
                             {this.quantityGenerator().map(num => <option key={num}>{num}</option>)}
                         </Form.Control>
                     </div>
@@ -120,7 +148,7 @@ class ItemSelection extends React.Component {
                 </Form><br />
                 <h3>Cart Items:</h3>
                 <ul>
-                    {this.props.items.map(item => <ItemCard key={item.id} item={item} handleRemove={this.handleRemove} />)}
+                    {this.props.order_items.map(item => <ItemCard key={item.id} item={item} handleRemove={this.handleRemove} />)}
                 </ul>
                 <Button variant="success"><Link to={'/shop/delivery_preferences'}  className="button-link">Next: Delivery Options</Link></Button>
             </div>
@@ -132,7 +160,8 @@ const mapStateToProps = (state) => {
     return { 
         user: state.user,
         orderID: state.order.id,
-        items: state.order.items
+        order_items: state.order.items,
+        items: state.items
      }
 }
 

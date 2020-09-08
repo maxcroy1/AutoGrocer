@@ -21,7 +21,7 @@ class Confirmation extends React.Component {
                 <p><strong>Contact Number:</strong><br />{this.props.phone}</p>
                 <p><strong>Items in Cart:</strong></p>
                 <ul>
-                    {this.props.items.map(item => <li key={item.name}>{item.name} x{item.quantity}</li>)}
+                    {this.props.items.map(item => <li key={item.name}><img src={item.img_url} height="150px" style={{paddingRight: "50px"}} /> {item.name} x{item.quantity}</li>)}
                 </ul>
                 <Button variant="success"><Link to='/order_complete' onClick={this.handleConfirmation} className="button-link">Confirm Order</Link></Button>
             </div>

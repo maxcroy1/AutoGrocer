@@ -21,6 +21,17 @@ class App extends React.Component {
     }
   }
 
+  itemsConfigObj = () => {
+    let configObj = {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+    return configObj
+}
+
   render() {
     return (
       <Router>

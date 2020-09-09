@@ -58,13 +58,18 @@ namespace :user_orders do
       #Apply response to Captcha
       browser.execute_script("document.getElementById('g-recaptcha-response').innerHTML='#{response.text}';")
       browser.execute_script("___grecaptcha_cfg.clients[0].A.A.callback('#{response.text}')")
-      sleep(3)
+      sleep(5)
 
       #Start search & add items to cart
       order.items.each do |item|
         browser.fill_in("Search Wegmans...", {placeholder: true, with: item.name}).native.send_keys(:return)
         sleep(7)
-        browser.first(:xpath, ".//div[contains(@class, 'item-card-contents')]").click
+        browser.first(:xpath, ".//text()[contains(., '#{item.name}')]//parent::span//parent::div").click
+        sleep(2)
+        quantity = item.order_items.filter{|oi| oi.order_id == order.id}[0].quantity
+        browser.find(:xpath, ".//select[contains(@id, 'quantity-selector')]").click
+        sleep(2)
+        browser.find(:xpath, ".//option[contains(@value, '#{quantity}')]").click
         sleep(2)
         #UPDATE QUANTITY
         browser.find_button('Add to cart').click

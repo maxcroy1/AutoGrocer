@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :order_items, only: [:create, :update, :destroy]
   resources :orders, only: [:create, :update]
-  resources :billing_settings, only: [:create]
-  resources :users, only: [:create]
+  resources :billing_settings, only: [:create, :update]
+  resources :users, only: [:create, :update]
   resources :items, only: [:index]
 
   post '/login', to: 'auth#create'

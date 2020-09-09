@@ -16,7 +16,6 @@ class App extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('ag_token')) {
-      console.log('its here')
       this.props.registerUser(localStorage.getItem('ag_token'));
     }
   }

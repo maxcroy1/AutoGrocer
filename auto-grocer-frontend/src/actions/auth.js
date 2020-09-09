@@ -16,6 +16,14 @@ export function fetchUserData() {
     }
 }
 
+export const updateUser = (response) => {
+    let value = Object.keys(response)
+    return {
+        type: "UPDATE_USER",
+        json: response
+    }
+}
+
 export const registerUser = (userToken) => {
     return {
         type: "REGISTER_USER",

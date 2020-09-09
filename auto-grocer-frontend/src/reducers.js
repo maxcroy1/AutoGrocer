@@ -37,6 +37,17 @@ function userReducer(state = { token: "", info: {} }, action) {
                     info: {}
                 }
 
+            case "UPDATE_USER": 
+                let key = Object.keys(action.json)[0]
+                let values = Object.values(action.json)[0]
+                return state = {
+                    ...state,
+                    info: {
+                        ...state.info,
+                        [`${key}`]: values
+                    }
+                }
+
             default: 
                 return state;
         }

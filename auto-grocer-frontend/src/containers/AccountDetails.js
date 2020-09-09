@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch, NavLink } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import AccountInformation from '../components/account_details/AccountInformation';
 import PaymentMethod from '../components/account_details/PaymentMethod';
 import ScheduledOrders from '../components/account_details/ScheduledOrders';
@@ -10,13 +11,13 @@ const AccountDetails = (props) => {
     let { path } = useRouteMatch();
 
     return (
-        <div>
+        <Container className="py-3">
             <h1>Account Details</h1>
-            <NavLink to={`${path}/account_information`}>Account Information</NavLink>
-            <NavLink to={`${path}/personal_information`}>Personal Information</NavLink>
-            <NavLink to={`${path}/payment_method`}>Payment Method</NavLink>
-            <NavLink to={`${path}/instacart_credentials`}>Instacart Credentials</NavLink>
-            <NavLink to={`${path}/scheduled_orders`}>Scheduled Orders</NavLink>
+            <NavLink to={`${path}/account_information`} className="pr-2">Account Information</NavLink>
+            <NavLink to={`${path}/personal_information`} className="pr-2">Personal Information</NavLink>
+            <NavLink to={`${path}/payment_method`} className="pr-2">Payment Method</NavLink>
+            <NavLink to={`${path}/instacart_credentials`} className="pr-2">Instacart Credentials</NavLink>
+            <NavLink to={`${path}/scheduled_orders`} className="pr-2">Scheduled Orders</NavLink>
             <div>
                 <Switch>
                     <Route exact path={`${path}/account_information`}>
@@ -36,7 +37,7 @@ const AccountDetails = (props) => {
                     </Route>
                 </Switch>
             </div>
-        </div>
+        </Container>
     );
 }
 

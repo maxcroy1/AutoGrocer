@@ -16,6 +16,14 @@ class BillingSettingsController < ApplicationController
         end
     end
 
+    def update
+        @billing_settings = BillingSetting.find(params[:id])
+        if @billing_settings.valid?
+            @billing_settings.update(billing_settings_params)
+            render json: {billing_settings: BillingSettingSerializer.new(@billing_settings)}, status: :accepted
+        end
+    end
+
     private
     def billing_settings_params
         params.require(:billing_setting).permit(:instacart_email, :instacart_pass, :card_num, :exp_month, :exp_year, :cvc, :street_address, :city, :state, :zipcode)

@@ -109,7 +109,7 @@ class ItemSelection extends React.Component {
     }
 
     handleRemove = (item) => {
-        let index = this.props.items.indexOf(item);
+        let index = this.props.order_items.indexOf(item);
         this.props.removeItem(index);
         let configObj = this.deleteConfig()
         fetch(`http://localhost:3000/order_items/${item.id}`, configObj)
@@ -148,7 +148,7 @@ class ItemSelection extends React.Component {
                 </Form><br />
                 <h3>Cart Items:</h3>
                 <ul>
-                    {this.props.order_items.map(item => <ItemCard key={item.id} item={item} handleRemove={this.handleRemove} />)}
+                    {this.props.order_items.map(item => <ItemCard key={item.id} item={item} handleRemove={() => this.handleRemove(item)} />)}
                 </ul>
                 <Button variant="success"><Link to={'/shop/delivery_preferences'}  className="button-link">Next: Delivery Options</Link></Button>
             </div>

@@ -21,6 +21,26 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+        @user = User.find(params[:id])
+        if request.headers["Old-Pass"].present?
+            old_pass = request.headers["Old-Pass"]
+        end
+        if @user.valid?
+            if old_pass
+                if old_pass == @user.password
+                    @user.update(user_params)
+                    render json: {user: UserSerializer.new(@user)}, status: :accepted
+                else
+                    render json: {message: "Current password doesn't match"}, status: :unacceptable
+                end
+            else
+                @user.update(user_params)
+                render json: {user: UserSerializer.new(@user)}, status: :accepted
+            end
+        end
+    end
+
     private 
     def user_params
         params.require(:user).permit(:fname, :lname, :email, :username, :password)

@@ -11,6 +11,17 @@ class Confirmation extends React.Component {
         this.props.orderComplete();
     }
 
+    getTotal = () => {
+        let sum = 0
+        for (let i = 0; i < this.props.items.length; i++) {
+            let price = this.props.items[i].price.split(' ')[0]
+            price = price.split('$')[1]
+            price = (parseFloat(price) * this.props.items[i].quantity).toFixed(2)
+            sum = sum + parseFloat(price)
+        }
+        return sum
+    }
+
     render() {
         return (
             <div>
@@ -19,10 +30,12 @@ class Confirmation extends React.Component {
                 <p><strong>Delivery Address:</strong><br />{this.props.address_one}<br />{this.props.address_two}<br />{this.props.zipcode}</p>
                 <p><strong>Delivery Instructions:</strong><br />{this.props.instructions}</p>
                 <p><strong>Contact Number:</strong><br />{this.props.phone}</p>
+                <p><strong>Order Total:</strong><br />${this.getTotal()}</p>
                 <p><strong>Items in Cart:</strong></p>
                 <ul>
-                    {this.props.items.map(item => <li key={item.name}><img src={item.img_url} height="150px" style={{paddingRight: "50px"}} /> {item.name} x{item.quantity}</li>)}
+                    {this.props.items.map(item => <li style={{listStyleType: 'none'}} key={item.name}><img src={item.img_url} height="150px" style={{paddingRight: "50px"}} /> {item.name} x{item.quantity}</li>)}
                 </ul>
+                <br />
                 <Button variant="success"><Link to='/order_complete' onClick={this.handleConfirmation} className="button-link">Confirm Order</Link></Button>
             </div>
         );

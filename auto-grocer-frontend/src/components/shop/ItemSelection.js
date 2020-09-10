@@ -12,7 +12,8 @@ class ItemSelection extends React.Component {
         selected_items: [], 
         inputValue: '',
         searched_item: '', 
-        quantity: '1'
+        quantity: '1',
+        total: 0
     }
 
     getItemsAPI = (input) => {
@@ -81,6 +82,7 @@ class ItemSelection extends React.Component {
         fetch('http://localhost:3000/order_items', configObj)
             .then(resp => resp.json())
             .then(json => this.props.addItem(json.item))
+            .then(() => this.getTotal())
             .catch(error => console.log(error))
     }
 
@@ -128,8 +130,22 @@ class ItemSelection extends React.Component {
         return configObj
     }
 
-    render() {
+    getTotal = () => {
+        let sum = 0
+        for (let i = 0; i < this.props.order_items.length; i++) {
+            let price = this.props.order_items[i].price.split(' ')[0]
+            price = price.split('$')[1]
+            price = (parseFloat(price) * this.props.order_items[i].quantity).toFixed(2)
+            sum = sum + parseFloat(price)
+        }
+        this.setState(previousState => {
+            return {
+                total: previousState.total + sum
+            }
+        })
+    }
 
+    render() {
 
         return (
             <div className="py-2">
@@ -146,6 +162,7 @@ class ItemSelection extends React.Component {
                     </div>
                     <Button type="submit" variant="success" className="my-3">Add Item</Button>
                 </Form><br />
+                {this.props.order_items.length > 0 ? <p><strong>Total: </strong>${this.state.total}</p> : null}
                 <h3>Cart Items:</h3>
                 <br />
                 <ul>

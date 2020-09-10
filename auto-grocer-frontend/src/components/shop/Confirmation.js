@@ -12,14 +12,10 @@ class Confirmation extends React.Component {
     }
 
     getTotal = () => {
-        let sum = 0
-        for (let i = 0; i < this.props.items.length; i++) {
-            let price = this.props.items[i].price.split(' ')[0]
-            price = price.split('$')[1]
-            price = (parseFloat(price) * this.props.items[i].quantity).toFixed(2)
-            sum = sum + parseFloat(price)
-        }
-        return sum
+        let pricesPerItem = this.props.items.map(item => parseFloat(item.price.split(' ')[0].split('$')[1]) * item.quantity)
+        let newTotal = pricesPerItem.reduce((a, b) => a + b, 0)
+        let finalTotal = newTotal.toFixed(2)
+        return finalTotal
     }
 
     render() {

@@ -78,6 +78,9 @@ class ItemSelection extends React.Component {
     handleAdd = (event) => {
         event.preventDefault();
         event.target.reset();
+        this.setState({
+            quantity: '1'
+        })
         let configObj = this.itemConfigObj();
         fetch('http://localhost:3000/order_items', configObj)
             .then(resp => resp.json())
@@ -115,6 +118,7 @@ class ItemSelection extends React.Component {
         this.props.removeItem(index);
         let configObj = this.deleteConfig()
         fetch(`http://localhost:3000/order_items/${item.id}`, configObj)
+        .then(() => this.getTotal())
             .catch(error => console.log(error))
     }
 
@@ -131,17 +135,11 @@ class ItemSelection extends React.Component {
     }
 
     getTotal = () => {
-        let sum = 0
-        for (let i = 0; i < this.props.order_items.length; i++) {
-            let price = this.props.order_items[i].price.split(' ')[0]
-            price = price.split('$')[1]
-            price = (parseFloat(price) * this.props.order_items[i].quantity).toFixed(2)
-            sum = sum + parseFloat(price)
-        }
-        this.setState(previousState => {
-            return {
-                total: previousState.total + sum
-            }
+        let pricesPerItem = this.props.order_items.map(item => parseFloat(item.price.split(' ')[0].split('$')[1]) * item.quantity)
+        let newTotal = pricesPerItem.reduce((a, b) => a + b, 0)
+        let finalTotal = newTotal.toFixed(2)
+        this.setState({
+            total: finalTotal
         })
     }
 

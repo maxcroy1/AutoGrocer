@@ -147,10 +147,11 @@ class ItemSelection extends React.Component {
                     <Button type="submit" variant="success" className="my-3">Add Item</Button>
                 </Form><br />
                 <h3>Cart Items:</h3>
+                <br />
                 <ul>
                     {this.props.order_items.map(item => <ItemCard key={item.id} item={item} handleRemove={() => this.handleRemove(item)} />)}
                 </ul>
-                <Button variant="success"><Link to={'/shop/delivery_preferences'}  className="button-link">Next: Delivery Options</Link></Button>
+                {this.props.order_items.length > 0 ? <Button variant="success"><Link to={'/shop/delivery_preferences'}  className="button-link">Next: Delivery Options</Link></Button> : null}
             </div>
         );
     }

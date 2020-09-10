@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 class PaymentMethod extends React.Component {
     state = {}
@@ -9,14 +10,14 @@ class PaymentMethod extends React.Component {
             <div className="py-3">
                 <h3>Payment Method</h3>
                 <p><strong>Credit or Debit Card: </strong>ends in { this.props.card.slice(-4) }, exp. { `${this.props.exp_month}/${this.props.exp_year}` }</p>
-                <button>Edit</button>
+                <Button variant="success">Edit</Button><br /><br />
                 <h3>Billing Address:</h3>
                 <p>
                     {this.props.street_address}<br />
                     {this.props.city}, {this.props.state}<br />
                     {this.props.zipcode}
                 </p>
-                <button>Edit</button>
+                <Button variant="success">Edit</Button>
             </div>
         );
     }

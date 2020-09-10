@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function OrderCard(props) {
     return (
@@ -9,7 +10,7 @@ function OrderCard(props) {
                 {props.order.delivery_address_one}, {props.order.delivery_address_two}<br />
                 {props.order.zipcode}
             </p>
-            <button>Edit</button>
+            <Button variant="success">Edit</Button>
         </div>
     )
 }

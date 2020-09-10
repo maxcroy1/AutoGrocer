@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../actions/auth';
 import { completeRegistration } from '../actions/registration';
+import { Container, Form, Button } from 'react-bootstrap';
 
 class Login extends React.Component {
 
@@ -49,16 +50,21 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div>
+            <Container className="py-4">
                 <h1>Login</h1>
-                <form onSubmit={ this.handleSubmit }>
-                    <label htmlFor="username">Username:</label><br />
-                    <input type="text" id="username" name="username" onChange={ this.handleChange }></input><br />
-                    <label htmlFor="password">Password:</label><br />
-                    <input type="password" id="password" name="password" onChange={ this.handleChange }></input><br />
-                    <input type="submit" value="Log in" />
-                </form>
-            </div>
+                <Form onSubmit={ this.handleSubmit }>
+                    <Form.Group>
+                        <Form.Label htmlFor="username">Username:</Form.Label>
+                        <Form.Control type="text" id="username" name="username" onChange={ this.handleChange }></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="password">Password:</Form.Label>
+                        <Form.Control type="password" id="password" name="password" onChange={ this.handleChange }></Form.Control>
+                    </Form.Group>
+                    <br />
+                    <Button variant="success" type="submit" value="Log in">Log In</Button>
+                </Form>
+            </Container>
         )
     }
 }

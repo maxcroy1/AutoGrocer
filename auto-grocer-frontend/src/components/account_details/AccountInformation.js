@@ -74,7 +74,7 @@ class AccountInformation extends React.Component {
 
     render() {
         return (
-            <div className="py-3">
+            <div>
                 <h3>Account Information</h3>
                 <p><strong>Username: </strong>{this.props.username}</p>
                 <Button variant="success" onClick={() => this.modalToggle("Username", "username")}>Edit</Button><br /><br />

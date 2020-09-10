@@ -53,7 +53,7 @@ class PersonalInformation extends React.Component {
 
     render() {
         return (
-            <div className="py-3">
+            <div>
                 <h3>Personal Information</h3>
                 <p><strong>First Name: </strong>{this.props.fname}</p>
                 <Button variant="success" onClick={() => this.modalToggle("First Name", "fname")}>Edit</Button><br /><br />

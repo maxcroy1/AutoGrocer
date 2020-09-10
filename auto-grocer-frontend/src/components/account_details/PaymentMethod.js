@@ -7,7 +7,7 @@ class PaymentMethod extends React.Component {
 
     render() {
         return (
-            <div className="py-3">
+            <div>
                 <h3>Payment Method</h3>
                 <p><strong>Credit or Debit Card: </strong>ends in { this.props.card.slice(-4) }, exp. { `${this.props.exp_month}/${this.props.exp_year}` }</p>
                 <Button variant="success">Edit</Button><br /><br />

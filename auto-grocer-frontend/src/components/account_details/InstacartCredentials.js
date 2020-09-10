@@ -53,7 +53,7 @@ class InstacartCredentials extends React.Component {
 
     render() {
         return (
-            <div className="py-3">
+            <div>
                 <h3>Instacart Credentials</h3>
                 <p><strong>Email Address: </strong>{this.props.email}</p>
                 <Button variant="success" onClick={() => this.modalToggle("Email Address", "instacart_email")}>Edit</Button><br /><br />

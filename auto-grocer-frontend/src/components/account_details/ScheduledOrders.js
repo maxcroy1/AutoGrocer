@@ -7,7 +7,7 @@ class ScheduledOrders extends React.Component {
     render() {
         return (
             <div>
-                <h2>Scheduled Orders</h2>
+                <h3>Scheduled Orders</h3>
                 {this.props.orders.map(order => <OrderCard order={order}/>)}
             </div>
         );
